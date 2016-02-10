@@ -16,10 +16,10 @@
 					include($path.'/partials/header.php');
 					include($path.'/partials/main.php');
 					include($path.'/partials/side.php');
+					include($path.'/partials/footer.php');
 				}
 			?>
 		</div>
-		<script src="js/javascript.js"></script>
+		<script src="Ressources/public/js/javascript.js"></script>
 	</body>
-	<?php include($path.'/partials/footer.php') ?>
 </html>

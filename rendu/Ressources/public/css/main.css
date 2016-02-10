@@ -1,9 +1,3 @@
-.container {
-	background-color: #FFFFCC;
-	width: 100%;
-	height: 800px;
-}
-
 #header {
 	background-color: #FFFF00;
 	width: 100%;
@@ -31,8 +25,10 @@
 }
 
 #login {
-	margin-top: 200px;
-	background-color: black;
+	margin: 200px auto 0 auto;
 	width: 365px;
 	height: 385px;
+	border: solid 1px;
+	border-radius: 5px;
+	background-color: #FAFFBD;
 }

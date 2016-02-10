@@ -2,7 +2,7 @@
 session_start();
 include_once('bd.php');
 spl_autoload_register(function ($class_name) {
-   include 'Modeles/'.$class_name . '.class.php';
+   include 'Models/'.$class_name . '.class.php';
 });
 
 $error_msg='';
