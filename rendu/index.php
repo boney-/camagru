@@ -1,22 +1,20 @@
 <?php
 	include_once ('Common.php');
+	$path = "Ressources/views/";
 ?>
 
 <!DOCTYPE html>
 <html>
-	<?php
-	include ('Ressources/views/partials/head.php');
-	?>
+	<?php include($path.'/partials/head.php'); ?>
 	<body>
 		<div class="container">
-			<header>
-
-			</header> 
-
-			<footer>
-
-			</footer>
+			<?php 
+				include($path.'/partials/header.php');
+				include($path.'/partials/main.php');
+				include($path.'/partials/side.php');
+			?>
 		</div>
 		<script src="js/javascript.js"> </script>
 	</body>
+	<?php include($path.'/partials/footer.php') ?>
 </html>
