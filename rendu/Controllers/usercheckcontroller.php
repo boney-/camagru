@@ -1,11 +1,11 @@
 <?php
 session_start();
-include_once('bd.php');
+include_once('../Ressources/config/database.php');
 spl_autoload_register(function ($class_name) {
-   include 'Models/'.$class_name . '.class.php';
+   include '../Models/'.$class_name . '.class.php';
 });
 
-$error_msg='';
+$_SESSION['errlog']='';
 
 if (isset($_POST['email']) && isset($_POST['password']) && (strlen($_POST['email'])>0) && (strlen($_POST['password'])>0))
 {    
@@ -15,20 +15,20 @@ if (isset($_POST['email']) && isset($_POST['password']) && (strlen($_POST['email
     
     if($retour_verif=='no_user')
     {
-        $error_msg="l'adresse email saisie est invalide ou n'existe pas.";
+        $_SESSION['errlog']="l'adresse email saisie est invalide ou n'existe pas.";
         /*header("refresh:1;url=index.php" );*/
     }
     else if($retour_verif=='wrong_pass')
     {
-        $error_msg="le mot de passe est erroné";
+        $_SESSION['errlog']="le mot de passe est erroné";
     }    
     else
     {
         $_SESSION['id_user'] = $user->get_iduser();
         $_SESSION['prenom_user'] = $user->get_prenom();
-        header ('location: index.php');
     }    
 }
-else{ $error_msg="Veuillez renseigner tout les champs";}
+else{ $_SESSION['errlog']="Veuillez renseigner tout les champs";}
+header ('location: ../index.php');
 
 ?>
