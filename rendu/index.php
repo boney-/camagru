@@ -1,6 +1,6 @@
 <?php
 	include_once ('Common.php');
-	$path = "Ressources/views/";
+	$path = "Ressources/views";
 ?>
 
 <!DOCTYPE html>
@@ -8,13 +8,18 @@
 	<?php include($path.'/partials/head.php'); ?>
 	<body>
 		<div class="container">
-			<?php 
-				include($path.'/partials/header.php');
-				include($path.'/partials/main.php');
-				include($path.'/partials/side.php');
+			<?php
+				if (empty($_SESSION['LOGIN']))
+					include($path.'/login.php');
+				else
+				{
+					include($path.'/partials/header.php');
+					include($path.'/partials/main.php');
+					include($path.'/partials/side.php');
+				}
 			?>
 		</div>
-		<script src="js/javascript.js"> </script>
+		<script src="js/javascript.js"></script>
 	</body>
 	<?php include($path.'/partials/footer.php') ?>
 </html>
