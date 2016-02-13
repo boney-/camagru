@@ -9,3 +9,15 @@ function str_random($length){
 	//lettre répétée 60 foix
 	return substr(str_shuffle(str_repeat($alpha, $length)), 0, $length);
 }
+
+function is_logged(){
+	if (session_status() == PHP_SESSION_NONE) {
+	 	session_start();
+	}
+
+	if(!isset($_SESSION['auth'])){
+		$_SESSION['flash']['error_msg'] = "Vous n'avez pas le droit d'accéder à cette page";
+		header('Location: login.php');
+		exit();
+	}
+}

@@ -27,8 +27,12 @@
         </div>
         <div id="navbar">
           <ul class="nav">
-            <li><a href="register.php">S'inscrire</a></li>
-            <li><a href="login.php">Se connecter</a></li>
+            <?php if(isset($_SESSION['auth'])): ?>
+              <li><a href="logout.php">Deconnexion</a></li>
+              <?php else: ?>
+                <li><a href="register.php">S'inscrire</a></li>
+                <li><a href="login.php">Se connecter</a></li>
+              <?php endif; ?>
           </ul>
         </div>
       </div>
@@ -40,7 +44,7 @@
       <?php if(isset($_SESSION['flash'])) : ?>
         <?php foreach($_SESSION['flash'] as  $type => $message) : ?>
           <div class="<?= $type; ?>">
-              <?= $message; ?>
+            <?= $message; ?>
           </div>
         <?php endforeach ?>
         <?php unset($_SESSION['flash']); ?>

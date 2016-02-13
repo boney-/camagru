@@ -1,6 +1,7 @@
 <?php
 
 	require_once 'inc/functions.php';
+	session_start();
 
 	if (!empty($_POST)) {
 
@@ -50,6 +51,7 @@
 			$req->execute([$_POST['username'], $password, $_POST['email'], $token]);
 			$user_id = $pdo->lastInsertId();
 			mail($_POST['email'], 'Confirmation de la création de votre compte', "Afin de valider la création de votre compte, merci de cliquer sur ce lien\n\nhttp://localhost/boney_camagru/new_rendu/confirm.php?id=$user_id&token=$token");
+			$_SESSION['flash']['success_msg'] = "Un email de confirmation vous a été envoyé pour valider votre compte";
 			header('Location: Login.php');
 			exit();
 		}
@@ -70,10 +72,7 @@
 			<?php endforeach; ?>
 		</ul>
 	</div>
-<!--	<?php /*else :*/?>
-	<div class="success_msg">
-		<p>Votre compte a été créé avec success !</p>
-	</div>-->
+
 	<?php endif; ?>
 
 	<form action="" method="POST">
