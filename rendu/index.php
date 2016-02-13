@@ -1,6 +1,6 @@
 <?php 
 include_once 'db.php';
-include_once 'photo.php';
+
  ?>
 
 <html>
@@ -9,21 +9,14 @@ include_once 'photo.php';
 		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
 	</head>
 	<body>
-<?php 
-
-$sql = 'SELECT * FROM photo';
-
-try{
-	$req = $DB->query($sql);
-	while($d = $req->fetch(PDO::FETCH_ASSOC)){
-		display_photo($d['url'], $d['description'], $d['like_count'], "photo-container");
-	} 
-}
-catch(PDOException $e){
-	echo 'requete down';
-}
-
- ?>
-
+		<?php
+			include_once 'menu.php';
+			if (isset($_POST['menu']) && $_POST['menu'] == "gallerie") {
+				include_once 'gallerie.php';
+		}
+			else{
+			include_once 'standart.php';
+		}
+		?>
 	</body>
 </html>
