@@ -17,16 +17,18 @@ if(!empty($_POST)) {
 require 'inc/header.php'; 
 ?>
 
-<h1>Bonjour <?= $_SESSION['auth']->username; ?></h1>
+<h1 class="page_title">Bonjour <?= $_SESSION['auth']->username; ?></h1>
 
+<div class="form">
 	<form action="" method="POST">
-		<div class="form">
+		<div class="form_group">
 			<input type="password" name="password" placeholder="Entrez votre nouveau mot de passe">
 		</div>
-		<div class="form">
+		<div class="form_group">
 			<input type="password" name="password_confirm" placeholder="Confirmation du mot de passe">
 		</div>
 		<button class="submit_btn">Changer mon mot de passe</button>
 	</form>
+</div>
 
 <?php require 'inc/footer.php' ?>

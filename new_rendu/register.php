@@ -60,7 +60,7 @@
 
  ?>
 
- 	<?php require 'inc/header.php' ?>
+ <?php require 'inc/header.php' ?>
 
 	<h1 class="page_title">S'inscrire</h1>
 	<?php if (!empty($errors)): ?>
@@ -76,18 +76,25 @@
 	<?php endif; ?>
 
 	<form action="" method="POST">
-		<div class="form">
-			<label for="">Username</label>
-			<input type="text" name="username" required />
-
-			<label for="">Email</label>
-			<input type="text" name="email" required />
-		
-			<label for="">Mot de passe</label>
-			<input	type="password" name="password" required/>
-
-			<label for="">Confimez votre mot de passe</label>
-			<input	type="password" name="password_confirmation" required/>
+		<div class="form_group">
+			<ul>
+				<li>
+					<label for="">Username</label>
+					<input type="text" name="username" required />
+				</li>
+				<li>
+					<label for="">Email</label>
+					<input type="text" name="email" required />
+				</li>
+				<li>
+					<label for="">Mot de passe</label>
+					<input	type="password" name="password" required/>
+				</li>
+				<li>
+					<label for="">Confimez votre mot de passe</label>
+					<input	type="password" name="password_confirmation" required/>
+				</li>
+			</ul>
 		</div>
 
 		<button type="submit" class="submit_btn">M'inscrire</button>
