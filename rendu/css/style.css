@@ -5,7 +5,7 @@
 .menu-form button{
 	margin: 0,0,0,0;
 	border: none;
-	padding 0;
+	padding: 0;
 	background-color: none;
 	cursor: pointer;
 }
@@ -29,6 +29,13 @@
 	transition: color 0.4s;
 }
 
-.like-btn:hover{
+.like-btn:hover
+{
 	color: green;
+}
+
+.like-vote{
+    text-align: right;
+    cursor: help;
+	color: darkgreen;
 }
