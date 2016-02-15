@@ -1,6 +1,7 @@
 <?php
 
 	require_once 'inc/functions.php';
+	session_start();
 
 	if (!empty($_POST)) {
 
@@ -50,6 +51,7 @@
 			$req->execute([$_POST['username'], $password, $_POST['email'], $token]);
 			$user_id = $pdo->lastInsertId();
 			mail($_POST['email'], 'Confirmation de la création de votre compte', "Afin de valider la création de votre compte, merci de cliquer sur ce lien\n\nhttp://localhost/boney_camagru/new_rendu/confirm.php?id=$user_id&token=$token");
+			$_SESSION['flash']['success_msg'] = "Un email de confirmation vous a été envoyé pour valider votre compte";
 			header('Location: Login.php');
 			exit();
 		}
@@ -58,7 +60,7 @@
 
  ?>
 
- 	<?php require 'inc/header.php' ?>
+ <?php require 'inc/header.php' ?>
 
 	<h1 class="page_title">S'inscrire</h1>
 	<?php if (!empty($errors)): ?>
@@ -70,25 +72,29 @@
 			<?php endforeach; ?>
 		</ul>
 	</div>
-<!--	<?php /*else :*/?>
-	<div class="success_msg">
-		<p>Votre compte a été créé avec success !</p>
-	</div>-->
+
 	<?php endif; ?>
 
 	<form action="" method="POST">
-		<div class="form">
-			<label for="">Username</label>
-			<input type="text" name="username" required />
-
-			<label for="">Email</label>
-			<input type="text" name="email" required />
-		
-			<label for="">Mot de passe</label>
-			<input	type="password" name="password" required/>
-
-			<label for="">Confimez votre mot de passe</label>
-			<input	type="password" name="password_confirmation" required/>
+		<div class="form_group">
+			<ul>
+				<li>
+					<label for="">Username</label>
+					<input type="text" name="username" required />
+				</li>
+				<li>
+					<label for="">Email</label>
+					<input type="text" name="email" required />
+				</li>
+				<li>
+					<label for="">Mot de passe</label>
+					<input	type="password" name="password" required/>
+				</li>
+				<li>
+					<label for="">Confimez votre mot de passe</label>
+					<input	type="password" name="password_confirmation" required/>
+				</li>
+			</ul>
 		</div>
 
 		<button type="submit" class="submit_btn">M'inscrire</button>

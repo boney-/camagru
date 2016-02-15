@@ -46,24 +46,53 @@
 
 .page_title {
   font-size: 35px;
+  padding: 15px;
 }
 
-.error_msg {
-    color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
+.msg {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
+}
+
+.error_msg {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+
 }
 
 .success_msg {
   color: #3c763d;
   background-color: #dff0d8;
   border-color: #d6e9c6;
+}
+
+.info_msg {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.container form {
   padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+}
+
+.container form ul li {
+  padding-bottom: 10px;
+
+}
+
+.container form ul li label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form_group {
+  margin-bottom: 15px;
+}
+
+.form_link a {
+  margin: 0px 15px;
 }
