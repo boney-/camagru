@@ -20,7 +20,7 @@ $_SESSION['auth']['id'] = 2;
                             document.getElementById(id).className = "like-vote";
 						}
 					};
-					xmlhttp.open("GET", "vote.php?id=".id.", true);
+					xmlhttp.open("GET", "vote.php?id=".id, true);
 					xmlhttp.send();
 				}
 			}
