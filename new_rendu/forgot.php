@@ -1,6 +1,6 @@
 <?php 
 	if (!empty($_POST) && !empty($_POST['email'])){
-		require_once 'inc/config/database.php';
+		require_once 'inc/db_connect.php';
 		require_once 'inc/functions.php';
 		session_start();
 		$req = $pdo->prepare('SELECT * FROM users WHERE email = ? AND confirmed_at IS NOT NULL');

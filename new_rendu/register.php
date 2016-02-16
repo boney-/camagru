@@ -7,7 +7,7 @@
 
 		$errors = [];
 		//connexion à la base de données
-		require_once 'inc/config/database.php';
+		require_once 'inc/db_connect.php';
 
 		if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
 			$errors['username'] = "Votre pseudo n'est pas valide (alphanumérique)";

@@ -28,7 +28,7 @@ function reconnect_from_cookie(){
 	}
 
 	if(isset($_COOKIE['remember']) && !isset($_SESSION['auth'])){
-		require_once 'config/database.php';
+		require_once 'config/db_connect.php';
 		//si require deja fais ailleurs on aura pas acces à $pdo
 		//global permet de recuperer $pdo si elle est deja définie ailleurs
 		if(!isset($pdo)){

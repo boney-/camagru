@@ -1,6 +1,6 @@
 <?php
 	if(isset($_GET['id']) && isset($_GET['token'])){
-		require('inc/config/database.php');
+		require('inc/db_connect.php');
 		require('inc/functions.php');
 		//on fixe la durée de validité du lien à 30 minutes
 		$req = $pdo->prepare('SELECT * FROM users WHERE id = ? AND reset_token IS NOT NULL AND reset_token = ? AND reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)');

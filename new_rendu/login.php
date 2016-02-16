@@ -8,7 +8,7 @@ if(isset($_SESSION['auth'])){
 }
 
 if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
-	require_once 'inc/config/database.php';
+	require_once 'inc/db_connect.php';
 	$req = $pdo->prepare('SELECT * FROM users WHERE username = :username OR email = :username AND confirmed_at IS NOT NULL');
 	$req->execute(['username' => $_POST['username']]);
 	$user = $req->fetch();
