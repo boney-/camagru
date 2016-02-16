@@ -4,15 +4,12 @@ require 'database.php';
 
 function db_create($host, $user, $password, $name)
 {
-	$db = mysqli_connect($host, $user, $password);
 	$pdo = new PDO("mysql:host=$host", $user, $password);
 	$req = $pdo->prepare("CREATE DATABASE IF NOT EXISTS ".$name." CHARACTER SET 'utf8'");
 	if ($req->execute()){
-		mysqli_close($db);
 		echo "Database created.\n";
 		return 1;
 	} else {
-		mysqli_close($db);
 		echo "Error while creating database\n";
 		return -1;
 	}
