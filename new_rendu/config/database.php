@@ -30,6 +30,7 @@ $DB_TABLE = [
 		like_count INT UNSIGNED NOT NULL
 	)',
 	'vote (
+		id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		user_id INT UNSIGNED NOT NULL,
 		photo_id INT UNSIGNED NOT NULL
 		)'

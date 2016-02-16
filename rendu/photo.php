@@ -1,7 +1,7 @@
 <?php
 
 function display_photo($id, $url, $description, $like, $size, $DB){
-	$sql = "SELECT vote FROM votes WHERE photo_id = $id AND user_id =". $_SESSION['auth']['id'];
+	$sql = "SELECT * FROM vote WHERE photo_id = $id AND user_id =". $_SESSION['auth']['id'];
 	$req = $DB->query($sql);
 	?>
 	<div class="<?php echo $size;?>">

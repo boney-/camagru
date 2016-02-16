@@ -1,7 +1,7 @@
 <?php
 
 try{
-	$DB = new PDO('mysql:host=localhost;dbname=test','root','');
+	$DB = new PDO('mysql:host=localhost;dbname=camagru','root','');
 	$DB->setAttribute(PDO::ATTR_ERRMODE,  PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e){
