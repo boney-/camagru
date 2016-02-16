@@ -19,30 +19,14 @@ function db_create($host, $user, $password, $name)
 
 require_once '../inc/db_connect.php';
 
-function table_create($name, $array, $pdo)
+function table_create($name, $tables, $pdo)
 {
-	$tables = '';
-	foreach ($array as $table => $columns){
-		$tables .= $table . ' (';
-		$count = count($columns);
-		foreach ($columns as $column => $type) {
-			$tables .=	$column . ' ' . $type;
-			$tables .= $count > 1 ? ', ': '';
-			$count--;
-		}
-		$tables .= ')';
-		$req = $pdo->prepare("CREATE TABLE IF NOT EXISTS ". $tables)->execute();
-		
-
-
-
-		if($req->execute([])){
-			echo "tables table created.\n";
-			return 1;
-		}
-		else{
-			echo "Error while creating tables.\n";
-			return -1;
+	foreach ($tables as $table){
+		try {
+			$req = $pdo->prepare("CREATE TABLE IF NOT EXISTS ". $table)->execute();
+		} catch(PDOException $exception) {
+			echo "Error while creating table ".explode(' ', $table)[0].".\n";
+			exit();
 		}
 	}
 }
