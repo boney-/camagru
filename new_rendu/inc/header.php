@@ -23,7 +23,7 @@
     <nav class="navbar">
       <div class="container">
         <div class="brand_div">
-          <a class="brand" href="#"><h1>Camagru</h1></a>
+          <a class="brand" href="gallery.php"><h1>Camagru</h1></a>
         </div>
         <div id="navbar">
           <ul class="nav">
