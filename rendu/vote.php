@@ -6,7 +6,6 @@ $_SESSION['auth']['id'] = 2;
 
 function check_vote($id_photo, $id_user, $DB)
 {
-    echo "vOTE";
     $sql = "SELECT * FROM vote WHERE photo_id = $id_photo AND user_id =". $id_user;
     $req = $DB->query($sql);
     if ($req->fetch())
@@ -18,13 +17,16 @@ function check_vote($id_photo, $id_user, $DB)
 // <script>
 // alert("HELLO!");
 // </script>
-if (preg_match("([0-9])\w+4",$_POST['id']))
+echo $_GET['id'];
+if (preg_match("([0-9])",$_GET['id']))
 {
-    if (check_vote($_GET['id'], $_SESSION['auth']['id'], $DB))
+    echo $_GET['id'];
+    if (!check_vote($_GET['id'], $_SESSION['auth']['id'], $DB))
     {
-        echo "vOTE";
+        echo $_GET['id'];
         
-        $sql = "INSERT INTO vote VALUES (NULL, ".$_GET['id'].",".$_SESSION['auth']['id'].")";
+        
+        $sql = "INSERT INTO vote VALUES (NULL, ".$_SESSION['auth']['id'].",".$_GET['id'].")";
         $req = $DB->query($sql);
     }
 }

@@ -33,5 +33,12 @@ $DB_TABLE = [
 		id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		user_id INT UNSIGNED NOT NULL,
 		photo_id INT UNSIGNED NOT NULL
-		)'
+		)',
+	'comment (
+		id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+		user_id INT NOT NULL,
+		photo_id INT NOT NULL,
+		comment VARCHAR(300) NOT NULL,
+		created_at DATETIME NULL DEFAULT NULL
+	)'
 ];

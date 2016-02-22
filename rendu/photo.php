@@ -9,8 +9,10 @@ function display_photo($id, $url, $description, $like, $size, $DB){
 		<div class="description"><?php echo $description;?></div>
 		<div id="<?php echo $id?>" class="<?php if ($req->fetch())
 			echo 'like-vote" title="You have already voted">'; else
-			echo 'like-btn" onclick="vote('.$id.')">';?><i class="fa fa-thumbs-up"></i><?php echo $like; ?></div>
-	</div>
+			echo 'like-btn" onclick="vote('.$id.')">';?><i class="fa fa-thumbs-up"></i><?php echo $like; ?>
+		</div>
+		<div id="<?echo $id;?>-comment">Load comment</div>
+	 </div>
 	<?php
 }
 ?>
