@@ -7,7 +7,6 @@
  */
 
 ?>
-toto
 <script src="vote.js"></script>
 <div id="allcomments"></div>
 <textarea name="comment" form="comment" id="comment" cols="30" rows="3"></textarea>

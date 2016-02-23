@@ -13,4 +13,12 @@ $_SESSION['auth']['id'] = 2;
 $sql = $DB->prepare("INSERT INTO comment (user_id, photo_id, comment, created_at) VALUES (?, ?, ?, ?)");
 $sql->execute(array($_SESSION['auth']['id'], $_POST['id'], $_POST['comment'], date("Y-m-d H:i:s")));
 
+$sql = $DB->prepare("SELECT * FROM comment WHERE comment.photo_id = ?");
+$sql->execute(array($_POST['id']));
+$res = $sql->fetch(PDO::FETCH_ASSOC);
+foreach ($sql as $val) {
+    echo "<span>".$val['user_id']."<br/> ".$val['comment']."<br/></span>";
+}
+
+
 ?>
