@@ -3,14 +3,11 @@
 // require_once 'inc/functions.php';
 // require 'inc/db_connect.php';
 // $req = $pdo->prepare('SELECT * FROM photo ORDER BY created_at DESC');
-// $req->execute();
 
-// $name = "toto";
+// $photos = $req->execute();
 require 'inc/header.php'
 
 ?>
-
-
 
 	<h1 class="page_title">Gallerie Photos</h1>
 
