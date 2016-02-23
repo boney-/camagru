@@ -54,7 +54,7 @@
 			$_SESSION['flash']['success_msg'] = "Un email de confirmation vous a été envoyé pour valider votre compte";
 			header('Location: Login.php');
 			exit();
-		}
+		} 
 
 	}
 
@@ -62,7 +62,7 @@
 
  <?php require 'inc/header.php' ?>
 
-	<h1 class="page_title">S'inscrire</h1>
+	<h1 class="page_title">Créer un compte</h1>
 	<?php if (!empty($errors)): ?>
 	<div class="error_msg">
 		<p>Vous n'avez pas rempli le formulaire correctement : </p><br>
@@ -97,7 +97,7 @@
 			</ul>
 		</div>
 
-		<button type="submit" class="submit_btn">M'inscrire</button>
+		<button type="submit" class="submit_btn">Créer</button>
 	</form>
 
 <?php require 'inc/footer.php' ?>

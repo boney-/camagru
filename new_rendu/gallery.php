@@ -12,7 +12,7 @@ require 'inc/header.php'
 
 
 
-	<h1 class="page_title">Gallery</h1>
+	<h1 class="page_title">Gallerie Photos</h1>
 
 	<div class="small_photo_div">
 		<a href="photo.php?name=$name">
