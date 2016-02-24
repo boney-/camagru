@@ -53,7 +53,51 @@ function reconnect_from_cookie(){
 		}
 	}
 
-	if ($_SESSION['flash']){
+	if ($_SESSION && $_SESSION['flash']){
 		$_SESSION['flash'] = NULL;
+	}
+}
+
+class Img{
+
+	static function createMin($img,$path,$name,$width=100,$height=100){
+		// On supprime l'extension du name
+		$name = substr($name,0,-4);
+		// On récupère les dimensions de l'image
+		$dimension=getimagesize($img);
+		// On cré une image à partir du fichier récup
+		if(substr(strtolower($img),-4)==".jpg"){$image = imagecreatefromjpeg($img); }
+		else if(substr(strtolower($img),-4)==".png"){$image = imagecreatefrompng($img); }
+		else if(substr(strtolower($img),-4)==".gif"){$image = imagecreatefromgif($img); }
+		// L'image ne peut etre redimensionne
+		else{return false; }
+		
+		// Création des miniatures
+		// On cré une image vide de la largeur et hauteur voulue
+		$miniature =imagecreatetruecolor ($width,$height); 
+		// On va gérer la position et le redimensionnement de la grande image
+		if($dimension[0]>($width/$height)*$dimension[1] ){ 
+			$dimY=$height; 
+			$dimX=$height*$dimension[0]/$dimension[1]; 
+			$decalX=-($dimX-$width)/2; 
+			$decalY=0;
+		}
+		if($dimension[0]<($width/$height)*$dimension[1]){ 
+			$dimX=$width; 
+			$dimY=$width*$dimension[1]/$dimension[0]; 
+			$decalY=-($dimY-$height)/2; 
+			$decalX=0;
+		}
+		if($dimension[0]==($width/$height)*$dimension[1]){ 
+			$dimX=$width; 
+			$dimY=$height; 
+			$decalX=0; 
+			$decalY=0;
+		}
+		// on modifie l'image crée en y plaçant la grande image redimensionné et décalée
+		imagecopyresampled($miniature,$image,$decalX,$decalY,0,0,$dimX,$dimY,$dimension[0],$dimension[1]);
+		// On sauvegarde le tout
+		imagejpeg($miniature,$path."/".$name.".jpg",90);
+		return true;
 	}
 }

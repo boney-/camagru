@@ -20,10 +20,10 @@ require_once 'inc/functions.php';
 		<div class="comment">
 			<span class="comment_auth"><?php echo $_GET['name'] ?></span>
 				dnbkldfknbndfklbndlkfnblk nlkbndlkndklbn dknb
-			<?php 
+			<?php /*
 				if ($i < $count) 
 					echo "<span class='line'></span>" ;
-			?>
+			*/?>
 		</div>
 		<div class="add_comment">
 			<textarea placeholder="commentaire ..."></textarea>

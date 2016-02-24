@@ -175,3 +175,29 @@
   padding: 6px;
   float: right;
 }
+
+.capture_div {
+  width: 100%;
+}
+
+.capture {
+  width: 65%;
+  height: 500px;
+  background-color: yellow;
+  margin: 15px 0;
+  float: left;
+}
+
+.upload h2 {
+  color: #0B3747;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sidebar {
+  background-color: green;
+  width: 30%;
+  height: 500px;
+  margin: 15px 0;
+  float: right;
+}
