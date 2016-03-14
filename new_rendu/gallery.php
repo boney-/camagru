@@ -5,29 +5,23 @@
 // $req = $pdo->prepare('SELECT * FROM photo ORDER BY created_at DESC');
 
 // $photos = $req->execute();
-require 'inc/header.php'
+require 'inc/header.php';
+require_once 'inc/db_connect.php';
+
+$sql = $pdo->prepare("SELECT * From photo ORDER BY created_at DESC");
+$sql->execute();
 
 ?>
 
 	<h1 class="page_title">Gallerie Photos</h1>
 
 	<div class="small_photo_div">
-		<a href="photo.php?name=$name">
+		<?php While ($res = $sql->fetch(PDO::FETCH_ASSOC)){ ?>
+		<a href="photo.php?id=<?php echo $res['id'] ?>">
 		 	<span class="helper"></span>
-			<img src="img/img0.jpg">
+			<img src="<?php echo $res['url'] ?>">
 		</a>
-		<a href="photo.php?name=$name">
-		 	<span class="helper"></span>
-			<img src="img/img1.jpg">
-		</a>
-		<a href="photo.php?name='$name'">
-		 	<span class="helper"></span>
-			<img src="img/img2.jpg">
-		</a>
-		<a href="photo.php?name=$name">
-		 	<span class="helper"></span>
-			<img src="img/img3.jpg">
-		</a>
+		<?php } ?>
 	</div>
 
 <?php require 'inc/footer.php' ?>

@@ -7,7 +7,7 @@
  */
 
 ?>
-<script src="vote.js"></script>
+<script src="../new_rendu/js/vote.js"></script>
 <div id="allcomments"></div>
 <textarea name="comment" form="comment" id="comment" cols="30" rows="3"></textarea>
 

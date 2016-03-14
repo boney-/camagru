@@ -9,7 +9,7 @@ $_SESSION['auth']['id'] = 2;
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-		<script src="vote.js"></script>
+		<script src="../new_rendu/js/vote.js"></script>
 	</head>
 	<body>
 		<?php
