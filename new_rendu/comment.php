@@ -10,6 +10,7 @@ include_once 'inc/db_connect.php';
 
 $_SESSION['auth']['id'] = 2;
 
+$_POST['comment'] = htmlspecialchars($_POST['comment']);
 $sql = $pdo->prepare("INSERT INTO comment (user_id, photo_id, comment, created_at) VALUES (?, ?, ?, ?)");
 $sql->execute(array($_SESSION['auth']['id'], $_POST['id'], $_POST['comment'], date("Y-m-d H:i:s")));
 

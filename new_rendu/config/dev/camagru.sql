@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 14 Mars 2016 à 07:37
+-- Généré le :  Lun 14 Mars 2016 à 16:44
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment` varchar(300) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2048 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2056 ;
 
 --
 -- Contenu de la table `comment`
@@ -52,7 +52,15 @@ INSERT INTO `comment` (`id`, `user_id`, `photo_id`, `comment`, `created_at`) VAL
 (2044, 2, 2, 'test', '2016-03-14 06:56:26'),
 (2045, 2, 2, 'tres beau chat!', '2016-03-14 06:56:33'),
 (2046, 2, 4, 'nice cat!', '2016-03-14 07:28:14'),
-(2047, 2, 3, 'Shocked huehuehue', '2016-03-14 07:31:00');
+(2047, 2, 3, 'Shocked huehuehue', '2016-03-14 07:31:00'),
+(2048, 2, 3, 'ow really *-*', '2016-03-14 11:38:30'),
+(2049, 2, 3, 'tto\n', '2016-03-14 13:43:46'),
+(2050, 2, 3, '.\n', '2016-03-14 13:44:20'),
+(2051, 2, 3, '<b>toto</b>', '2016-03-14 13:50:08'),
+(2052, 2, 3, '<i>toto</i>', '2016-03-14 13:50:26'),
+(2053, 2, 3, '&lt;i&gt;tito&lt;/i&gt;', '2016-03-14 13:52:26'),
+(2054, 2, 3, 'erg', '2016-03-14 14:14:38'),
+(2055, 2, 3, 'v', '2016-03-14 15:17:53');
 
 -- --------------------------------------------------------
 
@@ -99,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `reset_at` datetime DEFAULT NULL,
   `remember_token` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `users`
@@ -107,7 +115,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `confirmation_token`, `confirm_at`, `reset_token`, `reset_at`, `remember_token`) VALUES
 (1, 'bonay', 'test', 'test', NULL, NULL, NULL, NULL, NULL),
-(2, 'og', 'test', 'test', NULL, NULL, NULL, NULL, NULL);
+(2, 'og', 'test', 'test', NULL, NULL, NULL, NULL, NULL),
+(3, 'vorgz', 'vorgz@hotmail.fr', '$2y$10$bYqJbu8mADU8I4g.m9HP7uO3tP3WKVCjvzjyxj1WwlQgo1WpnWqXG', '4gyoJZHZ6YmymWvvohB8DBjboT3hhwCc4HerQWqOFxJdibXUg3l0vuTYqrlp', '2016-03-01 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -120,7 +129,14 @@ CREATE TABLE IF NOT EXISTS `vote` (
   `user_id` int(10) unsigned NOT NULL,
   `photo_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `vote`
+--
+
+INSERT INTO `vote` (`id`, `user_id`, `photo_id`) VALUES
+(2, 2, 3);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

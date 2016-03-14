@@ -20,6 +20,14 @@
   }
 }
 
+.float_left {
+  float: left;
+}
+
+.float_right {
+  float: right;
+}
+
 .navbar {
   background-color: #222;
   border-color: #080808;
@@ -200,4 +208,49 @@
   height: 500px;
   margin: 15px 0;
   float: right;
+}
+
+/* Descrition photo */
+
+.vote_div {
+  background-color: #D9EDF7;
+  border-radius: 3px;
+  padding: 2px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: 
+}
+
+.vote_div:hover{
+  background-color: #A9D44F;
+  transition: 0.3s;
+}
+
+.has_voted {
+  background-color: #A9D44F;
+}
+
+#like {
+  display: inline-block;
+  padding: 5px;
+  float: left;
+}
+
+#like_it {
+  width: 20px;
+  display: inline-block;
+}
+
+.created_at {
+  font-size: 13px;
+  color: #0B3747;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.description {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
 }

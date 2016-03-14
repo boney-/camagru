@@ -13,10 +13,14 @@ require_once 'inc/functions.php';
 require 'inc/header.php';
 require_once 'inc/db_connect.php';
 
-$sql = $pdo->prepare("SELECT url, title, description, created_at, like_count, username FROM users, photo WHERE photo.id = ? AND photo.user_id = users.id");
+$sql = $pdo->prepare("SELECT url, title, description, DATE_FORMAT(created_at, '%d/%m/%Y') AS created_at, username FROM users, photo WHERE photo.id = ? AND photo.user_id = users.id");
 if (isset($_GET['id'])) {
 	$sql->execute(array($_GET['id']));
 	$req = $sql->fetch(PDO::FETCH_ASSOC);
+
+	$sql = $pdo->prepare("SELECT COUNT(user_id) AS like_count FROM vote WHERE photo_id = ?");
+	$sql->execute(array($_GET['id']));
+	$req3 = $sql->fetch(PDO::FETCH_ASSOC);
 
 	$sql = $pdo->prepare("SELECT username, comment.id, comment, created_at FROM users, comment WHERE photo_id = ? AND comment.user_id = users.id ORDER BY created_at ASC");
 	$sql->execute(array($_GET['id']));
@@ -24,10 +28,23 @@ if (isset($_GET['id'])) {
 	<script type="text/javascript" src="js/vote.js"> </script>
 	<h1 class="page_title"><?php echo $req['title'] ?></h1>
 
+	<h2 class="created_at">Sent by 
+		<span class="created_by"><?php echo $req['username'] ?></span>
+		<?php echo $req['created_at'] ?>
+
+	</h2>
+
 	<div class="wide_photo_div">
 		<img src="<?php echo $req['url'] ?>"><br/>
-		<span><?php echo $req['description'] ?></span><br/>
-		<span>Photo created at: <?php echo $req['created_at'] ?></span>
+		<div class="description_div">
+			<div class="vote_div float_right">
+				<div id="like">
+					<?php echo (isset($req3['like_count']) ? $req3['like_count'] : NULL) ?>
+				</div>
+				<div id="like_it"><img src="img/like.png"></div>
+			</div>
+			<div class="description"><?php echo $req['description'] ?></div>
+		</div>
 	</div>
 
 	<div class="comments" id="allcomments">
