@@ -6,13 +6,15 @@
  * Time: 3:04 PM
  */
 
-include_once 'inc/db_connect.php';
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 
-$_SESSION['auth']['id'] = 2;
+require_once 'inc/db_connect.php';
 
 $_POST['comment'] = htmlspecialchars($_POST['comment']);
 $sql = $pdo->prepare("INSERT INTO comment (user_id, photo_id, comment, created_at) VALUES (?, ?, ?, ?)");
-$sql->execute(array($_SESSION['auth']['id'], $_POST['id'], $_POST['comment'], date("Y-m-d H:i:s")));
+$sql->execute(array($_SESSION['auth']->id, $_POST['id'], $_POST['comment'], date("Y-m-d H:i:s")));
 
 $sql = $pdo->prepare("SELECT username, comment.id, comment, created_at FROM users, comment WHERE photo_id = ? AND comment.user_id = users.id ORDER BY created_at ASC");
 $sql->execute(array($_POST['id']));
@@ -24,6 +26,7 @@ while ($res = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
     </div>
 <?php
 }
+
 ?>
 <div class="add_comment">
     <textarea name="comment" form="comment" id="comment" placeholder="commentaire ..."></textarea>
