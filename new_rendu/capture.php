@@ -25,12 +25,29 @@
 		}
 	}
 ?>
+<head>
+	<link rel="stylesheet" href="css/videocam.css" type="text/css" media="all">
+	<script src="js/video.js">
+	</script>
 
+</head>
 	<h1 class="page_title">Montage Photo ... C'est ici !</h1>
 
 	<div class="capture_div">
 		<div class="capture">
-			CAPTURE ZONE
+			<div class="camera">
+				<video id="video">Video stream not available.</video>
+				<button id="startbutton">Take photo</button>
+			</div>
+			<canvas id="canvas">
+			</canvas>
+			<div class="output">
+				<img id="photo" alt="The screen capture will appear in this box.">
+			</div>
+
+
+
+
 		</div>
 		<div class="sidebar">
 			ICI LA SIDE BAR

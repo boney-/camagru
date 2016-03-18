@@ -5,10 +5,10 @@ function vote(id) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById(id).className = "like-vote";
+                document.getElementById("vote_scr").className = "has_voted float_right";
             }
         };
-        xmlhttp.open("GET", "vote.php?id="+id, true);
+        xmlhttp.open("GET", "vote.php?id"+id, true);
         xmlhttp.send();
     }
 }

@@ -212,13 +212,12 @@
 
 /* Descrition photo */
 
-.vote_div {
+.vote_div, .has_voted {
   background-color: #D9EDF7;
   border-radius: 3px;
   padding: 2px;
   display: inline-block;
   cursor: pointer;
-  background-color: 
 }
 
 .vote_div:hover{
@@ -228,6 +227,7 @@
 
 .has_voted {
   background-color: #A9D44F;
+  cursor: default;
 }
 
 #like {

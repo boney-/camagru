@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
 	<div class="wide_photo_div">
 		<img src="<?php echo $req['url'] ?>"><br/>
 		<div class="description_div">
-			<div class="vote_div float_right">
+			<div id="vote_scr" class="vote_div float_right" onclick="vote(<?php echo $_GET['id'] ?>)">
 				<div id="like">
 					<?php echo (isset($req3['like_count']) ? $req3['like_count'] : NULL) ?>
 				</div>
