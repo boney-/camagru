@@ -12,13 +12,20 @@
 			$ext = strtolower(substr($img['name'], -3));
 			$allowed_ext = ['jpg', 'png'];
 			if(in_array($ext, $allowed_ext)) {
-				$sql = $pdo->prepare("SELECT id FROM photo ORDER BY id DESC");
+				// Création d'une image temporaire pour application des filtres
+				move_uploaded_file($img['tmp_name'], "img/tmp/tmp_img.".$ext);
+				
+
+
+
+				/*$sql = $pdo->prepare("SELECT id FROM photo ORDER BY id DESC");
 				$sql->execute();
 				$req = $sql->fetch();
-				$img_name = "img".($req->id+1);
-				move_uploaded_file($img['tmp_name'], "img/".$img_name.'.'.$ext);
-				$sql = $pdo->prepare("SELECT COUNT(user_id) AS like_count FROM vote WHERE photo_id = ?");
-				Img::createMin("img/".$img_name.'.'.$ext, "img/min/", $img_name.'.'.$ext, 400, 300);
+				$img_name = "img".($req->id+1);*/
+				//move_uploaded_file($img['tmp_name'], "img/tmp/".$img_name.'.'.$ext);
+	
+				/*
+				Img::createMin("img/".$img_name.'.'.$ext, "img/min/", $img_name.'.'.$ext, 400, 300);*/
 			} else {
 				$_SESSION['flash']['error_msg'] = "Le format du fichier uploadé n'est pas pris en charge";
 			}
@@ -35,30 +42,27 @@
 
 	<div class="capture_div">
 		<div class="capture">
-			<div class="camera">
-				<video id="video">Video stream not available.</video>
-				<button id="startbutton">Take photo</button>
-			</div>
-			<canvas id="canvas">
-			</canvas>
-			<div class="output">
-				<img id="photo" alt="The screen capture will appear in this box.">
-			</div>
-
-
-
-
+			<?php 
+				if (isset($ext))
+					echo '<img id="img_preview" src="img/tmp/tmp_img.'.$ext.'" />';
+				else
+					echo 
+						'<div class="camera">
+							<video id="video">Video stream not available.</video>
+							<button id="startbutton">Take photo</button>
+						</div>
+						<canvas id="canvas">
+						</canvas>
+						<div class="output">
+							<img id="photo" alt="The screen capture will appear in this box.">
+						</div>';
+			?>
 		</div>
 		<div class="sidebar">
 			ICI LA SIDE BAR
 		</div>
 	</div>
-	<div class="upload">
-		<h2> uploader une photo : </h2>
-		<form method="POST" action="" enctype="multipart/form-data">
-			<input type="file" name="img"/>
-			<input type="submit" name="send" value="Envoyer"/>
-		</form>
-	</div>
+	<button id="show_upload">Uploader une photo</button>
+	<div id="upload"></div>
 
 <?php require 'inc/footer.php' ?>

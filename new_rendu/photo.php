@@ -13,6 +13,8 @@ require_once 'inc/functions.php';
 require 'inc/header.php';
 require_once 'inc/db_connect.php';
 
+echo "toto";
+
 $sql = $pdo->prepare("SELECT url, title, description, DATE_FORMAT(created_at, '%d/%m/%Y') AS created_at, username FROM users, photo WHERE photo.id = ? AND photo.user_id = users.id");
 if (isset($_GET['id'])) {
 	$sql->execute(array($_GET['id']));
@@ -60,7 +62,6 @@ if (isset($_GET['id'])) {
 			<button onclick="send_comment(<?php  echo $_GET['id']?>)" action="" type="sutbmit" class="send_btn submit_btn">Envoyer</button>
 		</div>
 	</div>
-
 <?php
 }
 	require 'inc/footer.php'

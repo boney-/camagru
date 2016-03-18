@@ -196,6 +196,32 @@
   float: left;
 }
 
+#img_preview {
+  width: 100%;
+}
+
+#show_upload {
+    color: white;
+    border: #563d7c 1px solid;
+    background-color: #563d7c;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    outline:none
+}
+
+/*
+#show_upload:hover {
+    border: none;
+    background-color: #D9EDF7;
+    font-size: 15px;
+    color: #23527C;
+    border: #23527C 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+*/
+
 .upload h2 {
   color: #0B3747;
   font-size: 18px;
@@ -254,3 +280,4 @@
   border-radius: 5px;
   font-size: 14px;
 }
+
