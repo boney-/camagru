@@ -31,6 +31,15 @@
 			}
 		}
 	}
+
+	//recuperation filtres
+	$dir = opendir('img/filters');
+	$folder = [];
+	while (false !== ($name = readdir($dir))){
+		if ($name != '.' && $name != "..")
+			$folder[] = $name;
+	}
+	closedir($dir);
 ?>
 <head>
 	<link rel="stylesheet" href="css/videocam.css" type="text/css" media="all">
@@ -47,22 +56,38 @@
 					echo '<img id="img_preview" src="img/tmp/tmp_img.'.$ext.'" />';
 				else
 					echo 
-						'<div class="camera">
-							<video id="video">Video stream not available.</video>
-							<button id="startbutton">Take photo</button>
-						</div>
-						<canvas id="canvas">
-						</canvas>
-						<div class="output">
-							<img id="photo" alt="The screen capture will appear in this box.">
+						'<div class="cam_div">
+							<div class="camera">
+								<img id="select_filter" src="img/filters/1.png" alt="selected_filter" />
+								<video id="video">Video stream not available.</video>
+								<button id="startbutton">Take photo</button>
+							</div>
+							<canvas id="canvas">
+							</canvas>
+							<div class="output">
+								<img id="photo" alt="The screen capture will appear in this box.">
+							</div>
 						</div>';
 			?>
+			<div class="filters">
+				<?php 
+					$i = 0;
+					foreach ($folder as $file) {
+						if (preg_match('#^.+\.(png|jpg|jpeg)$#', $file))
+							echo "<div class='filter_div'>
+									<img class='filter' id='filter$i' src='img/filters/$file' alt='filters'/>	
+								</div>";
+						$i++;
+					}
+				?>
+			</div>
 		</div>
-		<div class="sidebar">
-			ICI LA SIDE BAR
-		</div>
+		<div class="sidebar"></div>
 	</div>
-	<button id="show_upload">Uploader une photo</button>
-	<div id="upload"></div>
+	<div class="show_upload">
+		<button id="show_upload">Uploader une photo</button>
+		<div id="upload"></div>
+	</div>
+	
 
 <?php require 'inc/footer.php' ?>
