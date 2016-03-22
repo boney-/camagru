@@ -1,25 +1,11 @@
 <?php
 
 include_once 'inc/db_connect.php';
+include_once 'inc/functions.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-function check_vote($id_photo, $id_user, $db)
-{
-
-    $sql = $db->prepare("SELECT * FROM vote WHERE photo_id = ? AND user_id = ?");
-    $sql->execute(array($id_photo, $id_user));
-    if ($sql->fetch())
-        return (true);
-    else
-        return (false);
-}
-
-// <script>
-// alert("HELLO!")
-// </script>
 
 if (isset($_GET['id'])) {
 
@@ -28,5 +14,9 @@ if (isset($_GET['id'])) {
         $sql = $pdo->prepare("INSERT INTO vote VALUES (NULL, ?, ?)");
         $sql->execute(array($_SESSION['auth']->id, $_GET['id']));
     }
+    $sql = $pdo->prepare("SELECT COUNT(id) as vote FROM vote WHERE photo_id = ?");
+    $sql->execute(array($_GET['id']));
+    $vote = $sql->fetch(PDO::FETCH_ASSOC);
+    echo $vote['vote'];
 }
 ?>

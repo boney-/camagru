@@ -13,21 +13,19 @@ require_once 'inc/functions.php';
 require 'inc/header.php';
 require_once 'inc/db_connect.php';
 
-echo "toto";
-
 $sql = $pdo->prepare("SELECT url, title, description, DATE_FORMAT(created_at, '%d/%m/%Y') AS created_at, username FROM users, photo WHERE photo.id = ? AND photo.user_id = users.id");
 if (isset($_GET['id'])) {
 	$sql->execute(array($_GET['id']));
 	$req = $sql->fetch(PDO::FETCH_ASSOC);
 
-	$sql = $pdo->prepare("SELECT COUNT(user_id) AS like_count FROM vote WHERE photo_id = ?");
+	$sql = $pdo->prepare("SELECT COUNT(id) AS like_count FROM vote WHERE photo_id = ?");
 	$sql->execute(array($_GET['id']));
 	$req3 = $sql->fetch(PDO::FETCH_ASSOC);
 
 	$sql = $pdo->prepare("SELECT username, comment.id, comment, created_at FROM users, comment WHERE photo_id = ? AND comment.user_id = users.id ORDER BY created_at ASC");
 	$sql->execute(array($_GET['id']));
 ?>
-	<script type="text/javascript" src="js/vote.js"> </script>
+
 	<h1 class="page_title"><?php echo $req['title'] ?></h1>
 
 	<h2 class="created_at">Sent by 
@@ -39,7 +37,7 @@ if (isset($_GET['id'])) {
 	<div class="wide_photo_div">
 		<img src="<?php echo $req['url'] ?>"><br/>
 		<div class="description_div">
-			<div id="vote_scr" class="vote_div float_right" onclick="vote(<?php echo $_GET['id'] ?>)">
+			<div onclick="vote(<?php echo $_GET['id'] ?>)" id="vote_scr" class="<?php if (!check_vote($_GET['id'], $_SESSION['auth']->id, $pdo)) echo 'vote_div'; else echo 'has_voted';?> float_right">
 				<div id="like">
 					<?php echo (isset($req3['like_count']) ? $req3['like_count'] : NULL) ?>
 				</div>

@@ -10,6 +10,17 @@ function str_random($length){
 	return substr(str_shuffle(str_repeat($alpha, $length)), 0, $length);
 }
 
+function check_vote($id_photo, $id_user, $db)
+{
+
+	$sql = $db->prepare("SELECT * FROM vote WHERE photo_id = ? AND user_id = ?");
+	$sql->execute(array($id_photo, $id_user));
+	if ($sql->fetch())
+		return (true);
+	else
+		return (false);
+}
+
 function is_logged(){
 	if (session_status() == PHP_SESSION_NONE) {
 	 	session_start();

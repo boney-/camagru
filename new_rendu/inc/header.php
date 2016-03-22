@@ -17,6 +17,7 @@
 
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="js/vote.js"> </script>
   </head>
 
   <body>
