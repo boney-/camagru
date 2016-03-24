@@ -43,9 +43,7 @@
 ?>
 <head>
 	<link rel="stylesheet" href="css/videocam.css" type="text/css" media="all">
-	<script src="js/video.js">
-	</script>
-
+	<script src="js/video.js"></script>
 </head>
 	<h1 class="page_title">Montage Photo ... C'est ici !</h1>
 
