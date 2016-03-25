@@ -50,9 +50,14 @@
 	<div class="capture_div">
 		<div class="capture">
 			<?php 
-				if (isset($ext))
-					echo '<img id="img_preview" src="img/tmp/tmp_img.'.$ext.'" />';
-				else
+				if (isset($ext)) {	
+					$filter_css = 'horizontal_';
+					echo '<div class="preview_div">
+							<img id="select_filter" src="img/filters/1.png" alt="selected_filter" />
+							<img id="img_preview" src="img/tmp/tmp_img.'.$ext.'" />
+						</div>';
+				} else {
+					$filter_css = 'vertical_';
 					echo 
 						'<div class="cam_div">
 							<div class="camera">
@@ -66,13 +71,14 @@
 								<img id="photo" alt="The screen capture will appear in this box.">
 							</div>
 						</div>';
+					}
 			?>
-			<div class="filters">
+			<div class="<?php echo $filter_css; ?>filters inline">
 				<?php 
 					$i = 0;
 					foreach ($folder as $file) {
 						if (preg_match('#^.+\.(png|jpg|jpeg)$#', $file))
-							echo "<div class='filter_div'>
+							echo "<div class='".$filter_css."filter_div inline'>
 									<img class='filter' id='filter$i' src='img/filters/$file' alt='filters'/>	
 								</div>";
 						$i++;
@@ -84,8 +90,13 @@
 	</div>
 	<div class="show_upload">
 		<button id="show_upload">Uploader une photo</button>
+		<?php if (isset($ext)) {
+			echo 
+				'<form class="show_cam" action="" method="post">
+					<input type="submit" value="Prendre une photo">
+				</form>';
+		} ?>
 		<div id="upload"></div>
 	</div>
-	
 
 <?php require 'inc/footer.php' ?>

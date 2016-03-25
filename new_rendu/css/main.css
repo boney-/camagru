@@ -201,40 +201,41 @@
   display: inline-block;
 }
 
-.camera {
+.camera, .preview_div {
   position: relative;
 }
 
 #img_preview {
   width: 100%;
   border-radius: 5px;
-  position: relative;
 }
 
 .inline {
   display: inline-block;
 }
 
-.filters {
-  display: inline-block;
-  width: 20%;
+.vertical_filters {
   float: right;
+  width: 20%;
 }
 
-.filter_div img {
+.horizontal_filters {
+  width: 100%;
+}
+
+.horizontal_filter_div {
+  width: 20%;
+}
+
+.filter {
   width: 80%;
   padding: 10%;
   cursor: pointer;
 }
 
-.filter_div img {
-  width: 80%;
-  padding: 10%;
-}
-
 .selected {
-    background-color: #19C88F;
-    border-radius: 15%;
+  background-color: #19C88F;
+  border-radius: 15%;
 }
 
 #select_filter {
@@ -263,6 +264,20 @@
   color: #0B3747;
   font-size: 18px;
   font-weight: bold;
+}
+
+.container form.show_cam {
+  width: 125px;
+  padding: 0px;
+  display: inline-block;
+}
+
+.show_cam input {
+  background-color: #2a2730;
+  color: white;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
 }
 
 .sidebar {
