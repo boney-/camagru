@@ -112,3 +112,25 @@ class Img{
 		return true;
 	}
 }
+
+
+//// A FINIR, le positionnement du filtre envoyé en parametre 3 et 4///////////
+
+function img_merge($ext, $filtre) {
+
+	$dest = imagecreatefromjpeg("img/tmp_img".$ext);
+	$src = imagecreatefrompng("img/filters/".$filtre."png");
+
+	imagecolortransparent($src, imagecolorat($src, 0, 0));
+
+	$src_x = imagesx($src);
+	$src_y = imagesy($src);
+	imagecopymerge($dest, $src, 0, 0, 0, 0, $src_x, $src_y, 100);
+
+	// Output and free from memory
+	header('Content-Type: image/png');
+	imagejpeg($dest, 'img/test.jpg');
+
+	imagedestroy($dest);
+	imagedestroy($src);
+}

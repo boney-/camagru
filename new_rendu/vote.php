@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (isset($_GET['id'])) {
 
-    if (!check_vote($_GET['id'], $_SESSION['auth']->id, $pdo)) {
+    if (isset($_SESSION['auth']) && !check_vote($_GET['id'], $_SESSION['auth']->id, $pdo)) {
 
         $sql = $pdo->prepare("INSERT INTO vote VALUES (NULL, ?, ?)");
         $sql->execute(array($_SESSION['auth']->id, $_GET['id']));

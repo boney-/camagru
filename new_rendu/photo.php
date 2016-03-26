@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
 	<div class="wide_photo_div">
 		<img src="<?php echo $req['url'] ?>"><br/>
 		<div class="description_div">
-			<div onclick="vote(<?php echo $_GET['id'] ?>)" id="vote_scr" class="<?php if (!check_vote($_GET['id'], $_SESSION['auth']->id, $pdo)) echo 'vote_div'; else echo 'has_voted';?> float_right">
+			<div onclick="vote(<?php echo $_GET['id'] ?>)" id="vote_scr" class="<?php if (!isset($_SESSION['auth']) || !check_vote($_GET['id'], $_SESSION['auth']->id, $pdo)) echo 'vote_div'; else echo 'has_voted';?> float_right">
 				<div id="like">
 					<?php echo (isset($req3['like_count']) ? $req3['like_count'] : NULL) ?>
 				</div>

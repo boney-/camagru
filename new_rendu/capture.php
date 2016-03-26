@@ -15,9 +15,6 @@
 				// Création d'une image temporaire pour application des filtres
 				move_uploaded_file($img['tmp_name'], "img/tmp/tmp_img.".$ext);
 				
-
-
-
 				/*$sql = $pdo->prepare("SELECT id FROM photo ORDER BY id DESC");
 				$sql->execute();
 				$req = $sql->fetch();
@@ -40,6 +37,9 @@
 			$folder[] = $name;
 	}
 	closedir($dir);
+
+	//position du filtre
+
 ?>
 <head>
 	<link rel="stylesheet" href="css/videocam.css" type="text/css" media="all">
@@ -52,8 +52,13 @@
 			<?php 
 				if (isset($ext)) {	
 					$filter_css = 'horizontal_';
+					$img = imagecreatefrompng("img/filters/1.png");
+					$proportion = (imagesx($img)/$size[0]) * 100;
+					echo 'proportion du filtre par rapport à l\'image :'.$proportion.'%';
+					//echo imagesx($img);
+
 					echo '<div class="preview_div">
-							<img id="select_filter" src="img/filters/1.png" alt="selected_filter" />
+							<img id="select_filter" src="img/filters/1.png" alt="selected_filter" style="width:'.$proportion.'%;"" />
 							<img id="img_preview" src="img/tmp/tmp_img.'.$ext.'" />
 						</div>';
 				} else {
@@ -79,7 +84,7 @@
 					foreach ($folder as $file) {
 						if (preg_match('#^.+\.(png|jpg|jpeg)$#', $file))
 							echo "<div class='".$filter_css."filter_div inline'>
-									<img class='filter' id='filter$i' src='img/filters/$file' alt='filters'/>	
+									<img class='filter' id='$i' src='img/filters/$file' alt='filters'/>	
 								</div>";
 						$i++;
 					}
@@ -95,6 +100,14 @@
 				'<form class="show_cam" action="" method="post">
 					<input type="submit" value="Prendre une photo">
 				</form>';
+			echo 
+				'<div class="filter_coord inline">
+					<label for="filter_x_coord">x </label>
+					<input class="coord inline" id="filter_x_coord" type="number" value="0">
+					<label for="filter_y_coord">y </label>
+					<input class="coord inline" id="filter_y_coord" type="number" value="0"/>
+					<button onclick="img_merge($ext, 1, 0, 0)" id="apply_filter">Appliquer</button>
+				</div>';
 		} ?>
 		<div id="upload"></div>
 	</div>
