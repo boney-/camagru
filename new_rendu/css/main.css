@@ -242,7 +242,13 @@
   width: 100%;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
+}
+
+/* filter position */
+
+.coord {
+  width: 45px;
 }
 
 #show_upload {
