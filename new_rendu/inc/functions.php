@@ -113,23 +113,32 @@ class Img{
 	}
 }
 
+//coord_x et coord_y à la position du filtre
+function img_merge($ext, $filtre, $coord_x, $coord_y) {
 
-//// A FINIR, le positionnement du filtre envoyé en parametre 3 et 4///////////
+//var_dump($ext, $filter, $coord_y, $coord_x);die;
 
-function img_merge($ext, $filtre) {
-
-	$dest = imagecreatefromjpeg("img/tmp_img".$ext);
-	$src = imagecreatefrompng("img/filters/".$filtre."png");
+	$dest = ( $ext == 'png') ? imagecreatefrompng("img/tmp/tmp_img.png") : imagecreatefromjpeg("img/tmp/tmp_img.".$ext);
+	$src = imagecreatefrompng("img/filters/".$filtre.".png");
 
 	imagecolortransparent($src, imagecolorat($src, 0, 0));
 
 	$src_x = imagesx($src);
 	$src_y = imagesy($src);
-	imagecopymerge($dest, $src, 0, 0, 0, 0, $src_x, $src_y, 100);
+
+	$dest_x = imagesx($dest);
+	$dest_y = imagesy($dest);
+	$scaleX = $dest_x / 100;
+	$scaleY = $dest_y / 100;
+
+		//var_dump($dest_x, $dest_y);die;
+
+	imagecopymerge($dest, $src, $coord_x * $scaleX, $coord_y * $scaleY, 0, 0, $src_x, $src_y, 100);
 
 	// Output and free from memory
 	header('Content-Type: image/png');
-	imagejpeg($dest, 'img/test.jpg');
+	//imagejpeg($dest, 'img/test.jpg');
+	imagejpeg($dest);
 
 	imagedestroy($dest);
 	imagedestroy($src);

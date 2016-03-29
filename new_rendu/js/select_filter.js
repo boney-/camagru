@@ -10,20 +10,15 @@ var selectFunction = function() {
     document.getElementById("select_filter").src = src;
 
 
-/* WIP */
-/*
-    //update apply filter function
-    var applyBtn = document.getElementById('apply_filter');
-    applyBtn.getAttribute("onclick").value = "toto";
-    alert(applyBtn.getAttribute("onclick").value);
-*/
+    //update filter id
+    document.getElementById("filterId").value = id;
 };
 
 function removeSelect(filters) {
 		for (var i = 0; i < filters.length; i++) {
 	    filters[i].classList.remove("selected");
 	}
-} 
+}
 
 for (var i = 0; i < filters.length; i++) {
     filters[i].addEventListener('click', selectFunction, false);

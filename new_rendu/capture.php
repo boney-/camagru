@@ -37,9 +37,6 @@
 			$folder[] = $name;
 	}
 	closedir($dir);
-
-	//position du filtre
-
 ?>
 <head>
 	<link rel="stylesheet" href="css/videocam.css" type="text/css" media="all">
@@ -50,15 +47,15 @@
 	<div class="capture_div">
 		<div class="capture">
 			<?php 
-				if (isset($ext)) {	
+				if (isset($ext)) {
 					$filter_css = 'horizontal_';
 					$img = imagecreatefrompng("img/filters/1.png");
 					$proportion = (imagesx($img)/$size[0]) * 100;
-					echo 'proportion du filtre par rapport à l\'image :'.$proportion.'%';
 					//echo imagesx($img);
 
 					echo '<div class="preview_div">
-							<img id="select_filter" src="img/filters/1.png" alt="selected_filter" style="width:'.$proportion.'%;"" />
+							<img id="select_filter" src="img/filters/1.png" alt="selected_filter" style="width:'.
+							$proportion.'%;" />
 							<img id="img_preview" src="img/tmp/tmp_img.'.$ext.'" />
 						</div>';
 				} else {
@@ -102,11 +99,15 @@
 				</form>';
 			echo 
 				'<div class="filter_coord inline">
-					<label for="filter_x_coord">x </label>
-					<input class="coord inline" id="filter_x_coord" type="number" value="0">
-					<label for="filter_y_coord">y </label>
-					<input class="coord inline" id="filter_y_coord" type="number" value="0"/>
-					<button onclick="img_merge($ext, 1, 0, 0)" id="apply_filter">Appliquer</button>
+					<form class="coord_form" action="makeup.php" method="post">
+						<input type="hidden" name="extension" value="'.$ext.'">
+						<input type="hidden" name="filterId" value="1" id="filterId">
+						<label for="filter_x_coord">x </label>
+						<input class="coord inline" id="filter_x_coord" type="number" min="0" max="100" name="x_coord">
+						<label for="filter_y_coord">y </label>
+						<input class="coord inline" id="filter_y_coord" type="number" min="0" max="100" name="y_coord">
+						<button type="submit" id="apply_filter">Appliquer</button>
+					<form>
 				</div>';
 		} ?>
 		<div id="upload"></div>

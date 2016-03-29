@@ -34,11 +34,11 @@ imagecolortransparent($src, imagecolorat($src, 0, 0));
 
 $src_x = imagesx($src);
 $src_y = imagesy($src);
-imagecopymerge($dest, $src, 0, 0, 0, 0, $src_x, $src_y, 100);
+imagecopymerge($dest, $src, 100, 10, 0, 0, $src_x, $src_y, 100);
 
 // Output and free from memory
 header('Content-Type: image/png');
-imagejpeg($dest, 'img/test.jpg');
+imagejpeg($dest);
 
 imagedestroy($dest);
 imagedestroy($src);

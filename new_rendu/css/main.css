@@ -251,6 +251,10 @@
   width: 45px;
 }
 
+.container .coord_form {
+  padding: 5px;
+}
+
 #show_upload {
     color: white;
     border: #563d7c 1px solid;
