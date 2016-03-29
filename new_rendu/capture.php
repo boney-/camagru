@@ -12,8 +12,9 @@
 			$ext = strtolower(substr($img['name'], -3));
 			$allowed_ext = ['jpg', 'png'];
 			if(in_array($ext, $allowed_ext)) {
+				$imgpath = "img/tmp/".$_SESSION['auth']->id."-tmp_img.".$ext;
 				// Création d'une image temporaire pour application des filtres
-				move_uploaded_file($img['tmp_name'], "img/tmp/tmp_img.".$ext);
+				move_uploaded_file($img['tmp_name'], $imgpath);
 				
 				/*$sql = $pdo->prepare("SELECT id FROM photo ORDER BY id DESC");
 				$sql->execute();
@@ -56,7 +57,7 @@
 					echo '<div class="preview_div">
 							<img id="select_filter" src="img/filters/1.png" alt="selected_filter" style="width:'.
 							$proportion.'%;" />
-							<img id="img_preview" src="img/tmp/tmp_img.'.$ext.'" />
+							<img id="img_preview" src="'.$imgpath.'" />
 						</div>';
 				} else {
 					$filter_css = 'vertical_';
@@ -88,7 +89,16 @@
 				?>
 			</div>
 		</div>
-		<div class="sidebar"></div>
+		<div class="sidebar">
+			<?php
+			$sql = $pdo->prepare("SELECT * FROM photo WHERE user_id = ? ORDER BY created_at LIMIT 4");
+			$sql->execute(array($_SESSION['auth']->id));
+			while ($req = $sql->fetch(PDO::FETCH_ASSOC)){
+				echo '<div class="img-wrap"><span class="close" onclick="(delete_img('.$req["id"].'))">&times;</span><a href="photo.php?id='.$req["id"].'"><img src="'.$req["url"].'" /></a></div>';
+			}
+			?>
+
+		</div>
 	</div>
 	<div class="show_upload">
 		<button id="show_upload">Uploader une photo</button>

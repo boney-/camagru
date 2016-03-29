@@ -297,6 +297,25 @@
   margin: 15px 0;
   float: right;
   border-radius: 5px;
+  text-align: center;
+}
+
+.sidebar img {
+  width: 90%;
+  padding-top: 10px;
+  border-radius: 25px;
+}
+
+.img-wrap {
+  position: relative;
+}
+
+.img-wrap .close{
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 100;
+  cursor: pointer;
 }
 
 /* Descrition photo */
