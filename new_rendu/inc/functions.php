@@ -113,12 +113,13 @@ class Img{
 	}
 }
 
+
 //coord_x et coord_y à la position du filtre
 function img_merge($ext, $filtre, $coord_x, $coord_y) {
 
 //var_dump($ext, $filter, $coord_y, $coord_x);die;
 
-	$dest = ( $ext == 'png') ? imagecreatefrompng("img/tmp/tmp_img.png") : imagecreatefromjpeg("img/tmp/tmp_img.".$ext);
+	$dest = ( $ext == 'png') ? imagecreatefrompng($pathToImg."tmp_img.png") : imagecreatefromjpeg($pathToImg."tmp_img.".$ext);
 	$src = imagecreatefrompng("img/filters/".$filtre.".png");
 
 	imagecolortransparent($src, imagecolorat($src, 0, 0));
@@ -143,3 +144,28 @@ function img_merge($ext, $filtre, $coord_x, $coord_y) {
 	imagedestroy($dest);
 	imagedestroy($src);
 }
+
+function filterResize() {
+
+//
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

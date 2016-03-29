@@ -50,12 +50,16 @@
 			<?php 
 				if (isset($ext)) {
 					$filter_css = 'horizontal_';
+
+					/* UNUSED FOR NOW */
+					/*
 					$img = imagecreatefrompng("img/filters/1.png");
 					$proportion = (imagesx($img)/$size[0]) * 100;
 					//echo imagesx($img);
+					*/
 
 					echo '<div class="preview_div">
-							<img id="select_filter" src="img/filters/1.png" alt="selected_filter" style="width:'.
+							<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="width:'.
 							$proportion.'%;" />
 							<img id="img_preview" src="'.$imgpath.'" />
 						</div>';
@@ -63,8 +67,9 @@
 					$filter_css = 'vertical_';
 					echo 
 						'<div class="cam_div">
+
 							<div class="camera">
-								<img id="select_filter" src="img/filters/1.png" alt="selected_filter" />
+								<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="display:none;width: 20%;"/>
 								<video id="video">Video stream not available.</video>
 								<button id="startbutton">Take photo</button>
 							</div>
@@ -73,9 +78,9 @@
 							<div class="output">
 								<img id="photo" alt="The screen capture will appear in this box.">
 							</div>
-						</div>';
-					}
-			?>
+						</div>
+				<?php } ?>
+
 			<div class="<?php echo $filter_css; ?>filters inline">
 				<?php 
 					$i = 0;
@@ -102,24 +107,19 @@
 	</div>
 	<div class="show_upload">
 		<button id="show_upload">Uploader une photo</button>
-		<?php if (isset($ext)) {
-			echo 
-				'<form class="show_cam" action="" method="post">
-					<input type="submit" value="Prendre une photo">
-				</form>';
-			echo 
-				'<div class="filter_coord inline">
-					<form class="coord_form" action="makeup.php" method="post">
-						<input type="hidden" name="extension" value="'.$ext.'">
-						<input type="hidden" name="filterId" value="1" id="filterId">
-						<label for="filter_x_coord">x </label>
-						<input class="coord inline" id="filter_x_coord" type="number" min="0" max="100" name="x_coord">
-						<label for="filter_y_coord">y </label>
-						<input class="coord inline" id="filter_y_coord" type="number" min="0" max="100" name="y_coord">
-						<button type="submit" id="apply_filter">Appliquer</button>
-					<form>
-				</div>';
-		} ?>
+			<form class="show_cam" action="" method="post">
+				<input type="submit" value="Prendre une photo">
+			</form>
+			<div class="filter_coord inline">
+				<form class="coord_form" action="makeup.php" method="post">
+					<input type="hidden" name="extension" value="'.$ext.'">
+					<input type="hidden" name="filterId" value="1" id="filterId">
+					<input type="hidden" name="filterSize" value="20" id="filterSize">
+					<input type="hidden" name="x_coord" id="filter_x_coord">
+					<input type="hidden" name="y_coord" id="filter_y_coord">
+					<button type="submit" id="apply_filter">Appliquer</button>
+				<form>
+			</div>
 		<div id="upload"></div>
 	</div>
 
