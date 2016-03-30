@@ -115,11 +115,9 @@ class Img{
 
 
 //coord_x et coord_y à la position du filtre
-function img_merge($ext, $filtre, $coord_x, $coord_y) {
+function img_merge($imgPath, $ext, $filtre, $coord_x, $coord_y) {
 
-//var_dump($ext, $filter, $coord_y, $coord_x);die;
-
-	$dest = ( $ext == 'png') ? imagecreatefrompng($pathToImg."tmp_img.png") : imagecreatefromjpeg($pathToImg."tmp_img.".$ext);
+	$dest = ($ext == "png") ? imagecreatefrompng($imgPath) : imagecreatefromjpeg($imgPath);
 	$src = imagecreatefrompng("img/filters/".$filtre.".png");
 
 	imagecolortransparent($src, imagecolorat($src, 0, 0));
@@ -145,9 +143,9 @@ function img_merge($ext, $filtre, $coord_x, $coord_y) {
 	imagedestroy($src);
 }
 
-function filterResize() {
+function filterResize($filter, $photo) {
 
-//
+//faire calcule de la taille du filtre
 
 
 }

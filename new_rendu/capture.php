@@ -47,8 +47,7 @@
 
 	<div class="capture_div">
 		<div class="capture">
-			<?php 
-				if (isset($ext)) {
+			<?php if (isset($ext)) {
 					$filter_css = 'horizontal_';
 
 					/* UNUSED FOR NOW */
@@ -57,28 +56,26 @@
 					$proportion = (imagesx($img)/$size[0]) * 100;
 					//echo imagesx($img);
 					*/
-
-					echo '<div class="preview_div">
-							<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="width:'.
-							$proportion.'%;" />
-							<img id="img_preview" src="'.$imgpath.'" />
-						</div>';
-				} else {
+			?>
+					<div class="preview_div">
+						<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="width: 20%;display: none;" />
+						<img id="img_preview" src="<?php echo $imgpath; ?>" />
+					</div>
+			<?php } else {
 					$filter_css = 'vertical_';
-					echo 
-						'<div class="cam_div">
-
-							<div class="camera">
-								<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="display:none;width: 20%;"/>
-								<video id="video">Video stream not available.</video>
-								<button id="startbutton">Take photo</button>
-							</div>
-							<canvas id="canvas">
-							</canvas>
-							<div class="output">
-								<img id="photo" alt="The screen capture will appear in this box.">
-							</div>
+			?>
+					<div class="cam_div">
+						<div class="camera">
+							<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="display:none;width: 20%;"/>
+							<video id="video">Video stream not available.</video>
+							<button id="startbutton">Take photo</button>
 						</div>
+						<canvas id="canvas">
+						</canvas>
+						<div class="output">
+							<img id="photo" alt="The screen capture will appear in this box.">
+						</div>
+					</div>
 				<?php } ?>
 
 			<div class="<?php echo $filter_css; ?>filters inline">
@@ -112,7 +109,10 @@
 			</form>
 			<div class="filter_coord inline">
 				<form class="coord_form" action="makeup.php" method="post">
-					<input type="hidden" name="extension" value="'.$ext.'">
+				<?php if (isset($ext)){ ?>
+					<input type="hidden" name="imgPath" value="<?php echo $imgpath; ?>">
+					<input type="hidden" name="extension" value="<?php echo $ext; ?>">
+				<?php } ?>
 					<input type="hidden" name="filterId" value="1" id="filterId">
 					<input type="hidden" name="filterSize" value="20" id="filterSize">
 					<input type="hidden" name="x_coord" id="filter_x_coord">

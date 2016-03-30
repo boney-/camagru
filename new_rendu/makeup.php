@@ -4,14 +4,12 @@ require_once 'inc/functions.php';
 
 if ($_POST){
 
-$pathToImg = "img/tmp/";
-$pathToFilter = "img/filters/";
-
-
+	$imgPath = htmlspecialchars($_POST['imgPath']);
 	$ext = htmlspecialchars($_POST['extension']);
  	$id = htmlspecialchars($_POST['filterId']);
+ 	$percent = htmlspecialchars($_POST['filterSize']);
  	$x = htmlspecialchars($_POST['x_coord']);
  	$y = htmlspecialchars($_POST['y_coord']);
 
-	img_merge($ext, $id, $x, $y);
+	img_merge($imgPath, $ext, $id, $x, $y);
 }

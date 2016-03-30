@@ -15,7 +15,7 @@ var selectFunction = function() {
     //update filter id
     document.getElementById("filterId").value = id;
 
-    if (id == 1) {
+    if (id == 0) {
     	selectedFilter.style.display = "none";
     } else {
     	selectedFilter.style.display = "";
