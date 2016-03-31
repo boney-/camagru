@@ -115,11 +115,10 @@ class Img{
 
 
 //coord_x et coord_y à la position du filtre
-function img_merge($imgPath, $ext, $filtre, $coord_x, $coord_y) {
+function img_merge($imgPath, $ext, $filterPath, $coord_x, $coord_y) {
 
 	$dest = ($ext == "png") ? imagecreatefrompng($imgPath) : imagecreatefromjpeg($imgPath);
-	$src = imagecreatefrompng("img/filters/".$filtre.".png");
-
+	$src = imagecreatefrompng($filterPath);
 	imagecolortransparent($src, imagecolorat($src, 0, 0));
 
 	$src_x = imagesx($src);
@@ -129,8 +128,6 @@ function img_merge($imgPath, $ext, $filtre, $coord_x, $coord_y) {
 	$dest_y = imagesy($dest);
 	$scaleX = $dest_x / 100;
 	$scaleY = $dest_y / 100;
-
-		//var_dump($dest_x, $dest_y);die;
 
 	imagecopymerge($dest, $src, $coord_x * $scaleX, $coord_y * $scaleY, 0, 0, $src_x, $src_y, 100);
 
@@ -143,17 +140,31 @@ function img_merge($imgPath, $ext, $filtre, $coord_x, $coord_y) {
 	imagedestroy($src);
 }
 
-function filterResize($filter, $photo) {
+function filterResize($filterPath, $imgPath, $percent, $ext) {
 
-//faire calcule de la taille du filtre
+	// Content type
+	header('Content-Type: image/png');
 
+	$filter = imagecreatefrompng($filterPath);
+	$photo = ($ext == "png") ? imagecreatefrompng($imgPath) : imagecreatefromjpeg($imgPath);
+	$imgWidth = imagesx($photo);
+	$filterWidth = imagesx($filter);
+	$filterHeight = imagesy($filter);
 
+	// Calcul des nouvelles dimensions
+	$newWidth = ($imgWidth / 100) * $percent;
+	$newHeight = ($newWidth / $filterWidth) * $filterHeight;
+
+	// Chargement
+	$thumb = imagecreatetruecolor($newWidth, $newHeight);
+	$source = imagecreatefrompng($filterPath);
+
+	// Redimensionnement
+	imagecopyresized($thumb, $source, 0, 0, 0, 0, $newWidth, $newHeight, $filterWidth, $filterHeight);
+
+	// Affichage
+	imagepng($thumb);
 }
-
-
-
-
-
 
 
 

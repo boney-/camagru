@@ -3,7 +3,7 @@
 	require_once 'inc/db_connect.php';
 	require 'inc/header.php';
 
-	if (!empty($_FILES)) {
+	if (isset($_FILES) && !empty($_FILES['img']['tmp_name'])) {
 		$size = getimagesize($_FILES['img']['tmp_name']);
 		if ($size[0] < 400 || $size[1] < 300)
 			$_SESSION['flash']['error_msg'] = "Les dimensions de l'image doivent être supérieur à 400x300";
