@@ -161,9 +161,13 @@ function filterResize($filterPath, $imgPath, $percent, $ext) {
 
 	// Redimensionnement
 	imagecopyresized($thumb, $source, 0, 0, 0, 0, $newWidth, $newHeight, $filterWidth, $filterHeight);
-
+	
+	// Application transparance
+	imagecolortransparent($thumb, imagecolorat($thumb, 0, 0));
 	// Affichage
-	imagepng($thumb);
+	// imagepng($thumb);
+	// Enregistrement
+	imagepng($thumb, 'img/tmp/tmp_filter.png');
 }
 
 
