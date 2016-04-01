@@ -113,10 +113,10 @@
 					<input type="hidden" name="imgPath" value="<?php echo $imgpath; ?>">
 					<input type="hidden" name="extension" value="<?php echo $ext; ?>">
 				<?php } ?>
-					<input type="hidden" name="filterId" value="1" id="filterId">
+					<input type="hidden" name="filterId" value="0" id="filterId">
 					<input type="hidden" name="filterSize" value="20" id="filterSize">
 					<input type="hidden" name="x_coord" id="filter_x_coord">
-					<input type="hidden" name="y_coord" id="filter_y_coord">
+					<input type="hidden" name="y_coord"  id="filter_y_coord">
 					<button type="submit" id="apply_filter">Appliquer</button>
 				<form>
 			</div>

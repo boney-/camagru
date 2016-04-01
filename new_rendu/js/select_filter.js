@@ -3,6 +3,7 @@
 var filters = document.getElementsByClassName("filter");
 
 var selectFunction = function() {
+    var applyBtn = document.getElementById("apply_filter");
     var id = this.getAttribute("id");
     var src = this.src;
     var selectedFilter = document.getElementById("select_filter");
@@ -11,14 +12,15 @@ var selectFunction = function() {
 	document.getElementById(id).classList.add("selected");
     selectedFilter.src = src;
 
-
     //update filter id
     document.getElementById("filterId").value = id;
 
     if (id == 0) {
     	selectedFilter.style.display = "none";
+        applyBtn.style.display = "none";
     } else {
     	selectedFilter.style.display = "";
+        applyBtn.style.display = "block";
     }
 };
 

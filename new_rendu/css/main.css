@@ -272,6 +272,11 @@
   font-weight: bold;
 }
 
+
+#apply_filter {
+  display: none;
+}
+
 .container form.show_cam {
   width: 125px;
   padding: 0px;
