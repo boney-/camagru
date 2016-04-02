@@ -108,7 +108,7 @@
 				<input type="submit" value="Prendre une photo">
 			</form>
 			<div class="filter_coord inline">
-				<form class="coord_form" action="makeup.php" method="post">
+				<form id="filter_form" class="coord_form" action="makeup.php" method="post">
 				<?php if (isset($ext)){ ?>
 					<input type="hidden" name="imgPath" value="<?php echo $imgpath; ?>">
 					<input type="hidden" name="extension" value="<?php echo $ext; ?>">
@@ -117,6 +117,10 @@
 					<input type="hidden" name="filterSize" value="20" id="filterSize">
 					<input type="hidden" name="x_coord" id="filter_x_coord">
 					<input type="hidden" name="y_coord"  id="filter_y_coord">
+				<?php if (empty($ext)) { ?>
+					<input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['auth']->id; ?>">
+					<input type="hidden" name="img_val" id="img_val" value="">
+				<?php } ?>
 					<button type="submit" id="apply_filter">Appliquer</button>
 				<form>
 			</div>

@@ -24,6 +24,7 @@
         canvas = document.getElementById('canvas');
         photo = document.getElementById('photo');
         startbutton = document.getElementById('startbutton');
+        img_val = document.getElementById('img_val');
 
         if (video) {
             navigator.getMedia = ( navigator.getUserMedia ||
@@ -105,6 +106,9 @@
 
             var data = canvas.toDataURL('image/png');
             photo.setAttribute('src', data);
+
+            img_val.value = photo.src;
+            document.getElementById("filter_form").submit();
         } else {
             clearphoto();
         }
