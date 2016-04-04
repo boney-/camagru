@@ -47,38 +47,20 @@
 
 	<div class="capture_div">
 		<div class="capture">
-			<?php if (isset($ext)) {
-					$filter_css = 'horizontal_';
-
-					/* UNUSED FOR NOW */
-					/*
-					$img = imagecreatefrompng("img/filters/1.png");
-					$proportion = (imagesx($img)/$size[0]) * 100;
-					//echo imagesx($img);
-					*/
-			?>
-					<div class="preview_div">
-						<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="width: 20%;display: none;" />
-						<img id="img_preview" src="<?php echo $imgpath; ?>" />
-					</div>
-			<?php } else {
-					$filter_css = 'vertical_';
-			?>
-					<div class="cam_div">
-						<div class="camera">
-							<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="display:none;width: 20%;"/>
-							<video id="video">Video stream not available.</video>
-							<button id="startbutton">Take photo</button>
-						</div>
+			<div class="preview_div">
+				<?php if (isset($ext)) { ?>
+					<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="width: 20%;display: none;" />
+					<img id="img_preview" src="<?php echo $imgpath; ?>" />
+				<?php } else { ?>
+						<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="display:none;width: 20%;"/>
+						<video id="video">Video stream not available.</video>
+						<button id="startbutton">Take photo</button>
 						<canvas id="canvas">
 						</canvas>
-						<div class="output">
-							<img id="photo" alt="The screen capture will appear in this box.">
-						</div>
-					</div>
 				<?php } ?>
+			</div>	
 
-			<div class="<?php echo $filter_css; ?>filters inline">
+			<div class="filters inline">
 				<?php 
 					$i = 0;
 					foreach ($folder as $file) {

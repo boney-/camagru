@@ -3,6 +3,7 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  min-width: 765px;
 }
 @media (min-width: 768px) {
   .container {
@@ -196,12 +197,7 @@
   float: left;
 }
 
-.cam_div {
-  width: 70%;
-  display: inline-block;
-}
-
-.camera, .preview_div {
+.preview_div {
   position: relative;
 }
 
@@ -214,16 +210,11 @@
   display: inline-block;
 }
 
-.vertical_filters {
-  float: right;
-  width: 20%;
-}
-
-.horizontal_filters {
+.filters {
   width: 100%;
 }
 
-.horizontal_filter_div {
+.filter_div {
   width: 20%;
 }
 
