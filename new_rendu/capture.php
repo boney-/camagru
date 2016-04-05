@@ -3,6 +3,10 @@
 	require_once 'inc/db_connect.php';
 	require 'inc/header.php';
 
+	if (!isset($_SESSION['auth'])){
+		header('Location: login.php');
+	}
+
 	if (isset($_FILES) && !empty($_FILES['img']['tmp_name'])) {
 		$size = getimagesize($_FILES['img']['tmp_name']);
 		if ($size[0] < 400 || $size[1] < 300)

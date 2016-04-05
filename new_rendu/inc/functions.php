@@ -117,6 +117,8 @@ class Img{
 //coord_x et coord_y à la position du filtre
 function img_merge($imgPath, $ext, $filterPath, $coord_x, $coord_y) {
 
+	is_logged();
+
 	$dest = ($ext == "png") ? imagecreatefrompng($imgPath) : imagecreatefromjpeg($imgPath);
 	$src = imagecreatefrompng($filterPath);
 	imagecolortransparent($src, imagecolorat($src, 0, 0));
@@ -132,12 +134,14 @@ function img_merge($imgPath, $ext, $filterPath, $coord_x, $coord_y) {
 	imagecopymerge($dest, $src, $coord_x * $scaleX, $coord_y * $scaleY, 0, 0, $src_x, $src_y, 100);
 
 	// Output and free from memory
-	header('Content-Type: image/png');
+	header('Content-Type: image/jpeg');
 	//imagejpeg($dest, 'img/test.jpg');
-	imagejpeg($dest);
+	imagejpeg($dest, 'img/tmp/'.$_SESSION['auth']->id.'-user_img.jpeg');
 
 	imagedestroy($dest);
 	imagedestroy($src);
+
+	//header('Location: edit.php');
 }
 
 function filterResize($filterPath, $imgPath, $percent, $ext) {
