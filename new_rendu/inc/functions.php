@@ -141,7 +141,7 @@ function img_merge($imgPath, $ext, $filterPath, $coord_x, $coord_y) {
 	imagedestroy($dest);
 	imagedestroy($src);
 
-	//header('Location: edit.php');
+	header('Location: edit.php');
 }
 
 function filterResize($filterPath, $imgPath, $percent, $ext) {
@@ -174,6 +174,9 @@ function filterResize($filterPath, $imgPath, $percent, $ext) {
 	imagepng($thumb, 'img/tmp/tmp_filter.png');
 }
 
+function redirect_to($target){
+	header("Location: $target");
+}
 
 
 

@@ -88,26 +88,4 @@ var checkKeyPressed = function(e) {
     }
 }
 
-
-/*
-var updateFilterCoord = function() {
-	var x = document.getElementById('filter_x_coord');
-	var y = document.getElementById('filter_y_coord');
-	var filter = document.getElementById('select_filter');
-
-	filter.style.left = x.value+"%";
-	filter.style.top = y.value+"%";
-}
-
-var positionFilter = function() {
-	var coord = document.getElementsByClassName("coord");
-	if (coord.length) {
-		for (var i = 0; i < coord.length; i++) {
-    		coord[i].addEventListener('change', updateFilterCoord, false);
-    	}
-	}
-}
-*/
-
 keypressCapture();
-

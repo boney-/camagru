@@ -310,6 +310,80 @@
   cursor: pointer;
 }
 
+/* Editer photo */
+#out_preview {
+  border-radius: 5px;
+  display: block;
+  width: 70%;
+  margin: auto;
+}
+
+#keep {
+  font-weight: bold;
+  font-size: 20px;
+  color: #3A66B6;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.choice_div {
+  width: 100%;
+  margin: auto;
+  padding: 15px;
+  text-align: center;
+}
+
+.choice {
+  margin: 10px;
+  padding: 25px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+#yes_keep {
+  background-color: #9fdb44;
+}
+
+#no_keep {
+  background-color: #F5574C;
+}
+
+#editform {
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+}
+
+.form_element {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#editform textarea {
+  height: 85px;
+  resize: none;
+
+}
+
+#editform button {
+  cursor: pointer;
+  width: 200px;
+  border: none;
+  background-color: #4cb1f5;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 15px;
+  margin: auto;
+}
+
 /* Descrition photo */
 
 .vote_div, .has_voted {

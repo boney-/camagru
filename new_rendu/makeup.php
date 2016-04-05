@@ -37,4 +37,5 @@ if ($_POST){
 
  	filterResize($filterPath, $imgPath, $percent, $ext);
 	img_merge($imgPath, $ext, $tempFilter, $x, $y);
+	header('Location: edit.php');
 }
