@@ -10,7 +10,7 @@ if ($_POST){
 
 	if (isset($_POST['extension'])) {
 		$imgPath = htmlspecialchars($_POST['imgPath']);
-		$ext = htmlspecialchars($_POST['extension']);
+		$ext = get_img_type($imgPath);
 	} else {
 		$imgVal = htmlspecialchars($_POST['img_val']);
  		$userId = htmlspecialchars($_POST['user_id']);

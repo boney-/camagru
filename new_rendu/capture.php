@@ -13,9 +13,9 @@
 			$_SESSION['flash']['error_msg'] = "Les dimensions de l'image doivent être supérieur à 400x300";
 		 else {
 			$img = $_FILES['img'];
-			$ext = strtolower(substr($img['name'], -3));
-			$allowed_ext = ['jpg', 'png'];
-			if(in_array($ext, $allowed_ext)) {
+			$ext = get_img_type($img['tmp_name']);
+
+			if(isset($ext)) {
 				$imgpath = "img/tmp/".$_SESSION['auth']->id."-tmp_img.".$ext;
 				// Création d'une image temporaire pour application des filtres
 				move_uploaded_file($img['tmp_name'], $imgpath);
@@ -30,6 +30,7 @@
 				Img::createMin("img/".$img_name.'.'.$ext, "img/min/", $img_name.'.'.$ext, 400, 300);*/
 			} else {
 				$_SESSION['flash']['error_msg'] = "Le format du fichier uploadé n'est pas pris en charge";
+				header('Location: capture.php');
 			}
 		}
 	}
@@ -69,7 +70,7 @@
 					$i = 0;
 					foreach ($folder as $file) {
 						if (preg_match('#^.+\.(png|jpg|jpeg)$#', $file))
-							echo "<div class='".$filter_css."filter_div inline'>
+							echo "<div class='filter_div inline'>
 									<img class='filter' id='$i' src='img/filters/$file' alt='filters'/>	
 								</div>";
 						$i++;
@@ -97,7 +98,6 @@
 				<form id="filter_form" class="coord_form" action="makeup.php" method="post">
 				<?php if (isset($ext)){ ?>
 					<input type="hidden" name="imgPath" value="<?php echo $imgpath; ?>">
-					<input type="hidden" name="extension" value="<?php echo $ext; ?>">
 				<?php } ?>
 					<input type="hidden" name="filterId" value="0" id="filterId">
 					<input type="hidden" name="filterSize" value="20" id="filterSize">

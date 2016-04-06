@@ -136,7 +136,7 @@ function img_merge($imgPath, $ext, $filterPath, $coord_x, $coord_y) {
 	// Output and free from memory
 	header('Content-Type: image/jpeg');
 	//imagejpeg($dest, 'img/test.jpg');
-	imagejpeg($dest, 'img/tmp/'.$_SESSION['auth']->id.'-user_img.jpeg');
+	imagejpeg($dest, 'img/tmp/'.$_SESSION['auth']->id.'-user_img.jpg');
 
 	imagedestroy($dest);
 	imagedestroy($src);
@@ -176,6 +176,16 @@ function filterResize($filterPath, $imgPath, $percent, $ext) {
 
 function redirect_to($target){
 	header("Location: $target");
+}
+
+function get_img_type($img) {
+	$type = NULL;
+	if (exif_imagetype($img) == IMAGETYPE_JPEG) {
+		$type = 'jpg';
+	} else if (exif_imagetype($img) == IMAGETYPE_PNG) {
+		$type = 'png';
+	}
+	return $type;
 }
 
 
