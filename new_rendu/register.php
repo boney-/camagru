@@ -14,8 +14,10 @@
 		if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
 			$errors['username'] = "Votre pseudo n'est pas valide (alphanumérique)";
 		} else {
+			$user_name = htmlspecialchars($_POST['username']);
+
 			$req = $pdo->prepare('SELECT id FROM users WHERE username = ?');
-			$req->execute([$_POST['username']]);
+			$req->execute(array($user_name));
 			//recupération d'un enregistrement (le premier)
 			$user = $req->fetch();
 			//verification username
@@ -27,8 +29,9 @@
 		if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 			$errors['email'] = "Votre email n'est pas valide";
 		} else {
+			$user_mail = htmlspecialchars($_POST['email']);
 			$req = $pdo->prepare('SELECT id FROM users WHERE email = ?');
-			$req->execute([$_POST['email']]);
+			$req->execute(array($user_mail));
 			//recupération d'un enregistrement (le premier)
 			$email = $req->fetch();
 			//verification email
@@ -45,14 +48,17 @@
 		}
 
 		if (empty($errors)) {
+			$user_pass = htmlspecialchars($_POST['password']);
 			//requete ajout utilisateur, utilisation requete préparé cf. doc php
 			$req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?, confirmation_token = ?");
-			$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+			
+			$password = password_hash($user_pass, PASSWORD_BCRYPT);
 			//generation string aléatoire comme clé de validation
 			$token = str_random(60);
-			$req->execute([$_POST['username'], $password, $_POST['email'], $token]);
+			$req->execute($user_name, $password, $user_mail, $token]);
 			$user_id = $pdo->lastInsertId();
-			mail($_POST['email'], 'Confirmation de la création de votre compte', "Afin de valider la création de votre compte, merci de cliquer sur ce lien\n\nhttp://localhost/boney_camagru/new_rendu/confirm.php?id=$user_id&token=$token");
+
+			mail($user_mail, 'Confirmation de la création de votre compte', "Afin de valider la création de votre compte, merci de cliquer sur ce lien\n\nhttp://localhost:8080/confirm.php?id=$user_id&token=$token");
 			$_SESSION['flash']['success_msg'] = "Un email de confirmation vous a été envoyé pour valider votre compte";
 			header('Location: login.php');
 			exit();

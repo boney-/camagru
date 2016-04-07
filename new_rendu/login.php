@@ -1,5 +1,7 @@
 <?php 
 require_once 'inc/functions.php';
+require_once 'inc/header.php';
+
 reconnect_from_cookie();
 //redirection automatique si connecté et cherche a acceder a login.php
 if(isset($_SESSION['auth'])){
@@ -25,12 +27,12 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
 		header('Location: account.php');
 		exit();
 	} else {
+
 		$_SESSION['flash']['error_msg'] = "Identifiant ou mot de passe incorrecte";
 	}
 }
 ?>
 
-<?php require 'inc/header.php'; ?>
 <h1 class="page_title">Vous connecter à votre compte</h1>
 
 <div class="form">
