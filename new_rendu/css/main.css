@@ -191,7 +191,6 @@
 
 .capture {
   width: 65%;
-  background-color: yellow;
   margin: 15px 0;
   border-radius: 5px;
   float: left;
@@ -283,9 +282,8 @@
 }
 
 .sidebar {
-  background-color: green;
   width: 30%;
-  height: 500px;
+  //height: 500px;
   margin: 15px 0;
   float: right;
   border-radius: 5px;
@@ -293,7 +291,7 @@
 }
 
 .sidebar img {
-  width: 90%;
+  width: 80%;
   padding-top: 10px;
   border-radius: 25px;
 }
@@ -304,10 +302,23 @@
 
 .img-wrap .close{
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: -2px;
+  right: 17px;
   z-index: 100;
   cursor: pointer;
+  text-align: center;
+  width: 20px;
+  font-size: 23px;
+  background-color: grey;
+  color: white;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+.img-wrap .close:hover {
+  background-color: red;
+  color: white;
+  transition: 0.5s;
 }
 
 /* Editer photo */

@@ -3,7 +3,7 @@
 //AllowNoPassword :  
 
 // sur mac mettre le port sinon error : QLSTATE[HY000] [2002] No such file or directory
-$DB_DSN = 'mysql:dbname=camagru;host=127.0.0.1;port=3307;';
+$DB_DSN = 'mysql:dbname=camagru;host=127.0.0.1;';
 // $DB_HOST = 'localhost';
 $DB_HOST = '127.0.0.1';
 $DB_USER = 'root';
