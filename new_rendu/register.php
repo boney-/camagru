@@ -1,7 +1,9 @@
 <?php
-
 	require_once 'inc/functions.php';
-	session_start();
+	
+	if (session_status() == PHP_SESSION_NONE) {
+	 	session_start();
+	}	
 
 	if (!empty($_POST)) {
 
@@ -52,7 +54,7 @@
 			$user_id = $pdo->lastInsertId();
 			mail($_POST['email'], 'Confirmation de la création de votre compte', "Afin de valider la création de votre compte, merci de cliquer sur ce lien\n\nhttp://localhost/boney_camagru/new_rendu/confirm.php?id=$user_id&token=$token");
 			$_SESSION['flash']['success_msg'] = "Un email de confirmation vous a été envoyé pour valider votre compte";
-			header('Location: Login.php');
+			header('Location: login.php');
 			exit();
 		} 
 
@@ -62,9 +64,8 @@
 
  <?php require 'inc/header.php' ?>
 
-	<h1 class="page_title">Créer un compte</h1>
 	<?php if (!empty($errors)): ?>
-	<div class="error_msg">
+	<div class="msg error_msg">
 		<p>Vous n'avez pas rempli le formulaire correctement : </p><br>
 		<ul>
 			<?php foreach($errors as $error): ?>
@@ -72,8 +73,9 @@
 			<?php endforeach; ?>
 		</ul>
 	</div>
-
 	<?php endif; ?>
+
+	<h1 class="page_title">Créer un compte</h1>
 
 	<form action="" method="POST">
 		<div class="form_group">

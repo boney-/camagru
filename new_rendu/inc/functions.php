@@ -27,7 +27,7 @@ function is_logged(){
 	}
 
 	if(!isset($_SESSION['auth'])){
-		$_SESSION['flash']['error_msg'] = "Vous n'avez pas le droit d'accéder à cette page";
+		$_SESSION['flash']['error_msg'] = "Vous devez vous connecter pour accéder à cette page";
 		header('Location: login.php');
 		exit();
 	}

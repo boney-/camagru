@@ -4,7 +4,7 @@
 	require 'inc/header.php';
 
 	if (!isset($_SESSION['auth'])){
-		header('Location: login.php');
+		is_logged();
 	}
 
 	if (isset($_FILES) && !empty($_FILES['img']['tmp_name'])) {

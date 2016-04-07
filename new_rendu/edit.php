@@ -2,7 +2,6 @@
 
 require_once 'inc/functions.php';
 require 'inc/header.php';
-
 is_logged();
 
 $outPath = "img/tmp/".$_SESSION['auth']->id."-user_img.jpeg";
