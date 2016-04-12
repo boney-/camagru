@@ -5,7 +5,7 @@ require_once 'inc/header.php';
 reconnect_from_cookie();
 //redirection automatique si connecté et cherche a acceder a login.php
 if(isset($_SESSION['auth'])){
-	header('Location: account.php');
+	header('Location: gallery.php');
 	exit();
 }
 
@@ -24,7 +24,7 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
 			//creation cookie avec info user qui dure 7j
 			setcookie('remember', $user->id . '//' . $remember_token . sha1($user->id . 'citronbride'), time() + 60 * 60 * 24 * 7);
 		}
-		header('Location: account.php');
+		header('Location: gallery.php');
 		exit();
 	} else {
 

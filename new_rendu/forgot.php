@@ -3,7 +3,7 @@
 		require_once 'inc/db_connect.php';
 		require_once 'inc/functions.php';
 		session_start();
-		$req = $pdo->prepare('SELECT * FROM users WHERE email = ? AND confirmed_at IS NOT NULL');
+		$req = $pdo->prepare('SELECT * FROM users WHERE email = ? AND confirm_at IS NOT NULL');
 		$req->execute([$_POST['email']]);
 		$user = $req->fetch();
 		if($user){
@@ -22,7 +22,7 @@
 <?php require 'inc/header.php'; ?>
 <h1 class="page_title">Mot de passe oublié</h1>
 
-<form action="" method="POST">
+<form action="reset.php" method="POST">
 	<div class="form">
 		<ul>
 			<li>

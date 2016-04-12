@@ -30,6 +30,7 @@
           <ul class="nav">
             <?php if(isset($_SESSION['auth'])): ?>
               <li><a href="capture.php">Vos montages</a></li>
+              <li><a href="account.php">Changer mdp</a></li>
               <li>
                 <a href=""><?php echo ucfirst($_SESSION['auth']->username); ?></a>
                 <a href="logout.php">(Deconnexion)</a>
