@@ -188,14 +188,22 @@ function get_img_type($img) {
 	return $type;
 }
 
+function delete_tmp($user_id, $path){
+	unlink($path.$user_id."-user_img.jpg");
+	unlink($path.$user_id."-tmp_img.png");
+	unlink($path."tmp_filter.png");
+}
 
-
-
-
-
-
-
-
-
+function add_photo($user_id, $src, $dst, $pdo){
+	$req = $pdo->prepare("SELECT COUNT(id) AS count FROM photo WHERE user_id = ?");
+	$req->execute([$user_id]);
+	$result = $req->fetch();
+	if (isset($result)) {
+		copy($src . $user_id . "-user_img.jpg", $dst . $user_id . "-" . ($result + 1) . ".jpg");
+		delete_tmp($user_id, $src);
+		$_SESSION['flash']['success_msg'] = "Votre photo à été ajouté avec success";
+		header("Location: capture.php");
+	}
+}
 
 

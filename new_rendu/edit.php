@@ -4,12 +4,13 @@ require_once 'inc/functions.php';
 require 'inc/header.php';
 is_logged();
 
-$outPath = "img/tmp/".$_SESSION['auth']->id."-user_img.jpeg";
+$outPath = "img/tmp/".$_SESSION['auth']->id."-user_img.jpg";
 
-// si l'utilisateur saccede a edit via l'url, affiche le dernier montage encore présent, sinon rediriger vers capture
-// if(!file_exists($outPath)){
-// 	header('Location: capture.php');
-// }
+// si l'utilisateur accede a edit via l'url, affiche le dernier montage encore présent, sinon rediriger vers capture
+if(!file_exists($outPath)){
+	$_SESSION['flash']['error_msg'] = "Veuillez prendre une photo";
+	header('Location: capture.php');
+}
 
 ?>
 

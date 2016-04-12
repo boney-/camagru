@@ -69,10 +69,15 @@
                     streaming = true;
                 }
             }, false);
+            
+            //recupere tableau d'element avec la class selected
+            var filter = document.getElementsByClassName("selected");
 
             startbutton.addEventListener('click', function(ev){
-                takepicture();
-                ev.preventDefault();
+                if(filter[0]){
+                    takepicture();
+                    ev.preventDefault();
+                }
             }, false);
 
             //clearphoto();

@@ -54,10 +54,10 @@
 		<div class="capture">
 			<div class="preview_div">
 				<?php if (isset($ext)) { ?>
-					<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="width: 20%;display: none;" />
+					<img id="select_filter" src="" alt="selected_filter" style="width: 20%;display: none;" />
 					<img id="img_preview" src="<?php echo $imgpath; ?>" />
 				<?php } else { ?>
-						<img id="select_filter" src="img/filters/0.png" alt="selected_filter" style="display:none;width: 20%;"/>
+						<img id="select_filter" src="" alt="selected_filter" style="display:none;width: 20%;"/>
 						<video id="video">Video stream not available.</video>
 						<button id="startbutton">Take photo</button>
 						<canvas id="canvas">
@@ -107,7 +107,9 @@
 					<input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['auth']->id; ?>">
 					<input type="hidden" name="img_val" id="img_val" value="">
 				<?php } ?>
+				<?php if (isset($ext)){ ?>
 					<button type="submit" id="apply_filter">Appliquer</button>
+				<?php } ?>
 				<form>
 			</div>
 		<div id="upload"></div>

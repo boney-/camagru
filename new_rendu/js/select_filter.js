@@ -20,7 +20,9 @@ var selectFunction = function() {
         applyBtn.style.display = "none";
     } else {
     	selectedFilter.style.display = "";
-        applyBtn.style.display = "block";
+        if (applyBtn){
+            applyBtn.style.display = "block"; 
+        }
     }
 };
 
