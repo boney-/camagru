@@ -108,6 +108,7 @@
 					<input type="hidden" name="img_val" id="img_val" value="">
 				<?php } ?>
 				<?php if (isset($ext)){ ?>
+					<input type="hidden" name="extension" id="extension" value="<?php echo $ext; ?>">
 					<button type="submit" id="apply_filter">Appliquer</button>
 				<?php } ?>
 				<form>
