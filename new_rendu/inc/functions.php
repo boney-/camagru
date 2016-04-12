@@ -190,6 +190,7 @@ function get_img_type($img) {
 
 function delete_tmp($user_id, $path){
 	unlink($path.$user_id."-user_img.jpg");
+	unlink($path.$user_id."-tmp_img.jpg");
 	unlink($path.$user_id."-tmp_img.png");
 	unlink($path."tmp_filter.png");
 }
