@@ -78,7 +78,7 @@
 				?>
 			</div>
 		</div>
-		<div class="sidebar">
+		<div class="sidebar" id="sidebar">
 			<?php
 			$sql = $pdo->prepare("SELECT * FROM photo WHERE user_id = ? ORDER BY created_at LIMIT 4");
 			$sql->execute(array($_SESSION['auth']->id));
