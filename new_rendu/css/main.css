@@ -126,12 +126,8 @@
 
 .small_photo_div a {
   width: 24%;
-  display: block;
-  border-radius: 10px;
   float: left;
   padding: 0.5%;
-  height: 135px;
-  overflow: hidden;
 }
 
 .comment {
@@ -292,6 +288,8 @@
   float: right;
   border-radius: 5px;
   text-align: center;
+  overflow: scroll;
+  height: 500px;
 }
 
 .sidebar img {
