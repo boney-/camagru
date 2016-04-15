@@ -80,7 +80,7 @@
 		</div>
 		<div class="sidebar" id="sidebar">
 			<?php
-			$sql = $pdo->prepare("SELECT * FROM photo WHERE user_id = ? ORDER BY created_at LIMIT 4");
+			$sql = $pdo->prepare("SELECT * FROM photo WHERE user_id = ? ORDER BY created_at DESC LIMIT 4");
 			$sql->execute(array($_SESSION['auth']->id));
 			while ($req = $sql->fetch(PDO::FETCH_ASSOC)){
 				echo '<div class="img-wrap"><span class="close" onclick="(delete_img('.$req["id"].'))">&times;</span><a href="photo.php?id='.$req["id"].'"><img src="'.$req["url"].'" /></a></div>';
