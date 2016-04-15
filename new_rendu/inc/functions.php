@@ -202,7 +202,7 @@ function add_photo($user_id, $src, $dst, $pdo){
 	if (isset($result)) {
 		copy($src . $user_id . "-user_img.jpg", $dst . $user_id . "-" . ($result + 1) . ".jpg");
 		delete_tmp($user_id, $src);
-		$_SESSION['flash']['success_msg'] = "Votre photo à été ajouté avec success";
+		$_SESSION['flash']['success_msg'] = "Votre photo à été ajouté avec succès";
 		header("Location: capture.php");
 	}
 }

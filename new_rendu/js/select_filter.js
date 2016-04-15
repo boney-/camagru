@@ -1,3 +1,6 @@
+/*
+** Select Filter
+*/
 
 //retourne un tableau d'element dont la class correspond
 var filters = document.getElementsByClassName("filter");
@@ -8,7 +11,7 @@ var selectFunction = function() {
     var src = this.src;
     var selectedFilter = document.getElementById("select_filter");
 
-	removeSelect(filters);
+	removeClass(filters, "selected");
 	document.getElementById(id).classList.add("selected");
     selectedFilter.src = src;
 
@@ -26,15 +29,18 @@ var selectFunction = function() {
     }
 };
 
-function removeSelect(filters) {
-		for (var i = 0; i < filters.length; i++) {
-	    filters[i].classList.remove("selected");
+function removeClass(tab, classToRemove) {
+		for (var i = 0; i < tab.length; i++) {
+	    tab[i].classList.remove(classToRemove);
 	}
 }
 
-for (var i = 0; i < filters.length; i++) {
-    filters[i].addEventListener('click', selectFunction, false);
+function setEventListenerOnClass(tab, triggerEvent, functionToUse) {
+    for (var i = 0; i < tab.length; i++) {
+        tab[i].addEventListener(triggerEvent, functionToUse, false);
+    }
 }
+
 
 
 /*
@@ -90,4 +96,25 @@ var checkKeyPressed = function(e) {
     }
 }
 
+/*
+** Select Capture Mode
+*/
+
+//retourne un tableau d'element dont la class correspond
+var triggers = document.getElementsByClassName("trigger");
+
+var CaptureSelect = function() {
+    var SelectedModeId = this.getAttribute("id");
+    removeClass(triggers, "selected_capture");
+    document.getElementById(SelectedModeId).classList.add("selected_capture");
+
+    if(SelectedModeId == 'up_trigger'){
+        document.getElementById("preview").innerHTML = '<form method="POST" action="" enctype="multipart/form-data"><input type="file" name="img"/><input type="submit" name="send" value="Envoyer"/></form>';
+    } else {
+        window.location = "capture.php";
+    }
+};
+
+setEventListenerOnClass(filters, 'click', selectFunction);
 keypressCapture();
+setEventListenerOnClass(triggers, 'click', CaptureSelect);

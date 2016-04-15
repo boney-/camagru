@@ -43,6 +43,8 @@
 			$folder[] = $name;
 	}
 	closedir($dir);
+
+	$select = isset($ext) ? '' : 'selected_capture';
 ?>
 <head>
 	<link rel="stylesheet" href="css/videocam.css" type="text/css" media="all">
@@ -50,9 +52,13 @@
 </head>
 	<h1 class="page_title">Montage Photo ... C'est ici !</h1>
 
+	<div id="trigger_div">
+		<div class="trigger inline <?= $select ?>" id="cam_trigger"><span>Webcam</span></div>
+		<div class="trigger inline" id="up_trigger"><span>Upload</span></div>
+	</div>
 	<div class="capture_div">
 		<div class="capture">
-			<div class="preview_div">
+			<div class="preview_div" id="preview">
 				<?php if (isset($ext)) { ?>
 					<img id="select_filter" src="" alt="selected_filter" style="width: 20%;display: none;" />
 					<img id="img_preview" src="<?php echo $imgpath; ?>" />
@@ -90,30 +96,25 @@
 		</div>
 	</div>
 	<div class="show_upload">
-		<button id="show_upload">Uploader une photo</button>
-			<form class="show_cam" action="" method="post">
-				<input type="submit" value="Prendre une photo">
-			</form>
-			<div class="filter_coord inline">
-				<form id="filter_form" class="coord_form" action="makeup.php" method="post">
-				<?php if (isset($ext)){ ?>
-					<input type="hidden" name="imgPath" value="<?php echo $imgpath; ?>">
-				<?php } ?>
-					<input type="hidden" name="filterId" value="0" id="filterId">
-					<input type="hidden" name="filterSize" value="20" id="filterSize">
-					<input type="hidden" name="x_coord" id="filter_x_coord">
-					<input type="hidden" name="y_coord"  id="filter_y_coord">
-				<?php if (empty($ext)) { ?>
-					<input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['auth']->id; ?>">
-					<input type="hidden" name="img_val" id="img_val" value="">
-				<?php } ?>
-				<?php if (isset($ext)){ ?>
-					<input type="hidden" name="extension" id="extension" value="<?php echo $ext; ?>">
-					<button type="submit" id="apply_filter">Appliquer</button>
-				<?php } ?>
-				<form>
-			</div>
-		<div id="upload"></div>
+		<div class="filter_coord inline">
+			<form id="filter_form" class="coord_form" action="makeup.php" method="post">
+			<?php if (isset($ext)){ ?>
+				<input type="hidden" name="imgPath" value="<?php echo $imgpath; ?>">
+			<?php } ?>
+				<input type="hidden" name="filterId" value="0" id="filterId">
+				<input type="hidden" name="filterSize" value="20" id="filterSize">
+				<input type="hidden" name="x_coord" id="filter_x_coord">
+				<input type="hidden" name="y_coord"  id="filter_y_coord">
+			<?php if (empty($ext)) { ?>
+				<input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['auth']->id; ?>">
+				<input type="hidden" name="img_val" id="img_val" value="">
+			<?php } ?>
+			<?php if (isset($ext)){ ?>
+				<input type="hidden" name="extension" id="extension" value="<?php echo $ext; ?>">
+				<button type="submit" id="apply_filter">Appliquer</button>
+			<?php } ?>
+			<form>
+		</div>
 	</div>
 
 <?php require 'inc/footer.php' ?>
